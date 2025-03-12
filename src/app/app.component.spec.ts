@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Easy2drive-SAE401'`, () => {
+  it(`should have as title 'crud'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Easy2drive-SAE401');
+    expect(app.title).toEqual('crud');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Easy2drive-SAE401');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('crud app is running!');
   });
 });

@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="text-center"><h1>Add New Student</h1></div>
+    <div style="width:50%; margin:auto">
+      <form [formGroup]="addForm" novalidate class="form">
+        
+        <!-- First Name -->
+        <div class="row">
+          <div class="col-md-6">First Name</div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" name="prenom" formControlName="prenom">
+          </div>
+        </div>
+  
+        <!-- Last Name -->
+        <div class="row">
+          <div class="col-md-6">Last Name</div>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="nom" formControlName="nom">
+          </div>
+        </div>
+  
+        <!-- Email -->
+        <div class="row">
+          <div class="col-md-6">Email</div>
+          <div class="col-md-6">
+            <input type="email" class="form-control" name="email" formControlName="email">
+          </div>
+        </div>
+  
+        <!-- Password -->
+        <div class="row">
+          <div class="col-md-6">Password</div>
+          <div class="col-md-6">
+            <input type="password" class="form-control" name="mot_de_passe" formControlName="mot_de_passe">
+          </div>
+        </div>
+  
+        <!-- Gender -->
+        <div class="row">
+          <div class="col-md-6">Gender</div>
+          <div class="col-md-6">
+            Male : <input formControlName="genre" type="radio" name="genre" value="male">
+            Female : <input formControlName="genre" type="radio" name="genre" value="female">
+          </div>
+        </div>
+  
+  
+        <!-- Auto-School -->
+        <div class="row">
+          <div class="col-md-6">Auto-School</div>
+          <div class="col-md-6">
+            <select formControlName="id_autoecole" name="id_autoecole" class="form-control">
+              <option *ngFor="let autoecole of autoecoleList" [value]="autoecole.id">
+                {{ autoecole.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-success" type="submit" [disabled]="!addForm.valid">ADD STUDENT</button>
+          </div>
+        </div>
+  
+      </form>
+    </div>
+  </div>
+  
