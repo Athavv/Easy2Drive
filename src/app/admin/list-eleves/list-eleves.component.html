@@ -19,7 +19,7 @@
             <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
             <td>{{ eleve.genre }}</td>
             <td>{{ eleve.autoecole_nom }}</td>
-            <td>  <a href="edit/{{eleve.id}}" class="btn btn-success">EDIT</a>    <button (click)="deleteEleve(eleve)" class="btn btn-info"> Delete</button>  </td>
+            <td>  <a href="edit/{{eleve.id}}" class="btn btn-success">Modifier</a>    <button (click)="deleteEleve(eleve)" class="btn btn-info"> Delete</button>  </td>
 
         </tr>
     </tbody>

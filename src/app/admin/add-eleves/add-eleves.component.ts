@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EleveService } from '../../services/eleve.service';
-import { Eleve } from '../../eleves'; // Importer l'interface Eleve
+import { Eleve } from '../../eleves'; 
 
 @Component({
   selector: 'app-add-eleves',
@@ -24,13 +24,14 @@ export class AddElevesComponent implements OnInit {
       prenom: ['', [Validators.required, Validators.maxLength(50)]],
       date_naissance: ['', Validators.required],
       adresse: ['', Validators.maxLength(255)],
-      npeh: ['', Validators.maxLength(50)], // Optionnel
-      etg: ['', Validators.maxLength(50)], // Optionnel
+      date_inscription: [new Date().toISOString().split('T')[0], Validators.required],  // Ajout de la date d'inscription
+      npeh: ['', Validators.maxLength(50)], 
       identifiant: ['', [Validators.required, Validators.maxLength(50)]],
       mot_de_passe: ['', [Validators.required, Validators.minLength(6)]],
       genre: ['', Validators.required],
       id_autoecole: ['', Validators.required]
     });
+    
   }
 
   ngOnInit(): void {

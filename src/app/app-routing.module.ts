@@ -10,7 +10,7 @@ import { AddElevesComponent } from './admin/add-eleves/add-eleves.component';
 
 export const routes: Routes = [
     
-    { path: 'add-eleve', component: ListStudentsComponent, pathMatch: 'full' },
+    { path: 'list-student', component: ListStudentsComponent, pathMatch: 'full' },
     { path: 'add-student', component: AddStudentsComponent },
     { path: 'add-eleves', component: AddElevesComponent },
     { path: 'edit/:id', component: EditStudentsComponent },
