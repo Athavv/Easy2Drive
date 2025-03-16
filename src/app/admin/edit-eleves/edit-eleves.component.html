@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="text-center">
+    <h1>Modifier l'élève</h1>
+  </div>
+  <div style="width:50%;margin:auto">
+    <form [formGroup]="editForm" novalidate class="form">
+      <!-- Nom -->
+      <div class="row">
+        <div class="col-md-6">Nom</div>
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="nom" formControlName="nom">
+        </div>
+      </div>
+
+      <!-- Prénom -->
+      <div class="row">
+        <div class="col-md-6">Prénom</div>
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="prenom" formControlName="prenom">
+        </div>
+      </div>
+
+      <!-- Date de naissance -->
+      <div class="row">
+        <div class="col-md-6">Date de naissance</div>
+        <div class="col-md-6">
+          <input type="date" class="form-control" name="date_naissance" formControlName="date_naissance">
+        </div>
+      </div>
+
+      <!-- Adresse -->
+      <div class="row">
+        <div class="col-md-6">Adresse</div>
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="adresse" formControlName="adresse">
+        </div>
+      </div>
+
+      <!-- Date d'inscription -->
+      <div class="row">
+        <div class="col-md-6">Date d'inscription</div>
+        <div class="col-md-6">
+          <input type="date" class="form-control" name="date_inscription" formControlName="date_inscription">
+        </div>
+      </div>
+
+      <!-- NPEH -->
+      <div class="row">
+        <div class="col-md-6">NPEH</div>
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="npeh" formControlName="npeh">
+        </div>
+      </div>
+
+      <!-- Identifiant -->
+      <div class="row">
+        <div class="col-md-6">Identifiant</div>
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="identifiant" formControlName="identifiant">
+        </div>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="row">
+        <div class="col-md-6">Mot de passe</div>
+        <div class="col-md-6">
+          <input type="password" class="form-control" name="mot_de_passe" formControlName="mot_de_passe">
+        </div>
+      </div>
+
+      <!-- Genre -->
+      <div class="row">
+        <div class="col-md-6">Genre</div>
+        <div class="col-md-6">
+          Homme : <input formControlName="genre" type="radio" name="genre" value="Homme">
+          Femme : <input formControlName="genre" type="radio" name="genre" value="Femme">
+          Autre : <input formControlName="genre" type="radio" name="genre" value="Autre">
+        </div>
+      </div>
+
+      <!-- Auto-école -->
+      <div class="row">
+        <div class="col-md-6">Auto-école</div>
+        <div class="col-md-6">
+          <select formControlName="id_autoecole" name="id_autoecole" class="form-control">
+            <option *ngFor="let autoecole of autoecoleList" [value]="autoecole.id_autoecole">
+              {{ autoecole.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Bouton de soumission -->
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-success" (click)="onEdit()">Modifier</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EleveService } from '../../services/eleve.service';
-import { Eleve } from '../../eleves'; 
+import { Eleve } from '../../modules/eleves'; 
 
 @Component({
   selector: 'app-add-eleves',

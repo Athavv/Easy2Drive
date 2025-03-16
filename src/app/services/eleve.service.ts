@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Eleve } from '../eleves'; // Assure-toi d'importer le bon modèle
+import { Eleve } from '../modules/eleves'; // Assure-toi d'importer le bon modèle
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class EleveService {
   }
 
   // Récupérer un élève spécifique par son ID
-  getSingleEleve(id: any): Observable<Eleve> {
-    return this.http.get<Eleve>(`${this.baseUrl}admin/view.php?id=${id}`);
+  getSingleEleve(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}admin/view.php?id=${id}`);
   }
 
   // Supprimer un élève par ID

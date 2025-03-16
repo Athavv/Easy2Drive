@@ -1,15 +1,15 @@
 export class Eleve {
-  id_eleve: number;
-  nom: string;
-  prenom: string;
-  date_naissance: string;
+  id_eleve!: number; 
+  nom!: string;
+  prenom!: string;
+  date_naissance!: string;
   adresse?: string;
-  date_inscription: string;
+  date_inscription!: string;
   npeh?: number;
-  identifiant: string;
-  mot_de_passe: string;
-  genre: string;
-  id_autoecole: number;
+  identifiant!: string;
+  mot_de_passe!: string;
+  genre!: string;
+  id_autoecole!: number;
 
   constructor(
     id_eleve: number,

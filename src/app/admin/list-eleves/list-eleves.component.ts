@@ -5,7 +5,6 @@ import { EleveService } from '../../services/eleve.service';
 @Component({
   selector: 'app-list-eleves',
   standalone: false,
-
   templateUrl: './list-eleves.component.html',
   styleUrls: ['./list-eleves.component.css']
 })
