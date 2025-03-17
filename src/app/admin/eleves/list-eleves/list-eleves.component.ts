@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EleveService } from '../../services/eleve.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EleveService } from '../../../services/eleve.service';
+import { Eleve } from '../../../modules/eleves';
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EleveService } from '../../services/eleve.service';
-import { Eleve } from '../../modules/eleves'; 
+import { EleveService } from '../../../services/eleve.service';
+import { Eleve } from '../../../modules/eleves'; 
 
 @Component({
   selector: 'app-add-eleves',
@@ -12,19 +12,19 @@ import { Eleve } from '../../modules/eleves';
 })
 export class AddElevesComponent implements OnInit {
   addForm: FormGroup;
-  autoecoleList: any[] = []; // Liste des auto-écoles pour le choix dans le formulaire
+  autoecoleList: any[] = []; 
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private eleveService: EleveService // Service pour l'élève
+    private eleveService: EleveService 
   ) {
     this.addForm = this.formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', [Validators.required, Validators.maxLength(50)]],
       date_naissance: ['', Validators.required],
       adresse: ['', Validators.maxLength(255)],
-      date_inscription: [new Date().toISOString().split('T')[0], Validators.required],  // Ajout de la date d'inscription
+      date_inscription: [new Date().toISOString().split('T')[0], Validators.required],  
       npeh: ['', Validators.maxLength(50)], 
       identifiant: ['', [Validators.required, Validators.maxLength(50)]],
       mot_de_passe: ['', [Validators.required, Validators.minLength(6)]],
@@ -35,10 +35,9 @@ export class AddElevesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadAutoecoleList(); // Chargement des auto-écoles pour le choix dans le formulaire
+    this.loadAutoecoleList(); 
   }
 
-  // Méthode pour charger la liste des auto-écoles (à adapter si nécessaire)
   loadAutoecoleList() {
     this.eleveService.getAutoecoleList().subscribe(
       (data: any) => {
@@ -52,12 +51,11 @@ export class AddElevesComponent implements OnInit {
 
   onSubmit(): void {
     if (this.addForm.valid) {
-      // Envoi des données du formulaire à l'API PHP pour ajouter l'élève
-      const newEleve: Eleve = this.addForm.value; // Typage avec l'interface Eleve
+      const newEleve: Eleve = this.addForm.value; 
       this.eleveService.createEleve(newEleve).subscribe(
         (response: any) => {
           if (response.success) {
-            this.router.navigate(['/']);  // Rediriger vers la liste des élèves ou autre page
+            this.router.navigate(['/']); 
           } else {
             alert('Erreur lors de l\'ajout de l\'élève');
           }

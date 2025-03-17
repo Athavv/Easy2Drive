@@ -32,15 +32,14 @@ try {
     $adresse = $data['adresse'] ?? null;
     $date_inscription = date('Y-m-d'); // Date d'inscription automatique
     $npeh = $data['npeh'] ?? null;
-    $etg = $data['etg'] ?? null;
     $identifiant = htmlspecialchars(trim($data['identifiant']));
     $mot_de_passe = password_hash($data['mot_de_passe'], PASSWORD_DEFAULT);
     $genre = $data['genre'];
     $id_autoecole = $data['id_autoecole'];
 
     // Requête d'insertion
-    $query = "INSERT INTO eleve (nom, prenom, date_naissance, adresse, date_inscription, npeh, etg, identifiant, mot_de_passe, genre, id_autoecole) 
-              VALUES (:nom, :prenom, :date_naissance, :adresse, :date_inscription, :npeh, :etg, :identifiant, :mot_de_passe, :genre, :id_autoecole)";
+    $query = "INSERT INTO eleve (nom, prenom, date_naissance, adresse, date_inscription, npeh, identifiant, mot_de_passe, genre, id_autoecole) 
+              VALUES (:nom, :prenom, :date_naissance, :adresse, :date_inscription, :npeh, :identifiant, :mot_de_passe, :genre, :id_autoecole)";
     
     $stmt = $conn->prepare($query);
     $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
@@ -49,7 +48,6 @@ try {
     $stmt->bindValue(':adresse', $adresse, PDO::PARAM_STR);
     $stmt->bindValue(':date_inscription', $date_inscription, PDO::PARAM_STR);
     $stmt->bindValue(':npeh', $npeh, PDO::PARAM_STR);
-    $stmt->bindValue(':etg', $etg, PDO::PARAM_STR);
     $stmt->bindValue(':identifiant', $identifiant, PDO::PARAM_STR);
     $stmt->bindValue(':mot_de_passe', $mot_de_passe, PDO::PARAM_STR);
     $stmt->bindValue(':genre', $genre, PDO::PARAM_STR);

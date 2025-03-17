@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EleveService } from '../../services/eleve.service';
-import { Eleve } from '../../modules/eleves';
+import { EleveService } from '../../../services/eleve.service';
+import { Eleve } from '../../../modules/eleves';
 
 @Component({
   selector: 'app-edit-eleves',
@@ -12,7 +12,7 @@ import { Eleve } from '../../modules/eleves';
 })
 export class EditElevesComponent implements OnInit {
   editForm: FormGroup;
-  autoecoleList: any[] = []; // Liste des auto-écoles pour le choix dans le formulaire
+  autoecoleList: any[] = []; 
   eleve_id: any;
 
   constructor(
@@ -27,8 +27,8 @@ export class EditElevesComponent implements OnInit {
       prenom: ['', [Validators.required, Validators.maxLength(50)]],
       date_naissance: ['', Validators.required],
       adresse: ['', Validators.maxLength(255)],
-      date_inscription: [new Date().toISOString().split('T')[0]], // Date d'inscription par défaut
-      npeh: [''], // Optionnel
+      date_inscription: [new Date().toISOString().split('T')[0]], 
+      npeh: [''], 
       identifiant: ['', [Validators.required, Validators.maxLength(50)]],
       mot_de_passe: ['', [Validators.required, Validators.minLength(6)]],
       genre: ['', Validators.required],
@@ -37,13 +37,12 @@ export class EditElevesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.eleve_id = this.route.snapshot.params['id']; // Récupérer l'ID de l'élève depuis l'URL
+    this.eleve_id = this.route.snapshot.params['id']; 
   
     if (this.eleve_id > 0) {
       this.eleveService.getSingleEleve(this.eleve_id).subscribe(
         (response: any) => {
           if (response.success && response.data) {
-            // Remplir le formulaire avec les données de l'élève
             this.editForm.patchValue({
               id_eleve: response.data.id_eleve,
               nom: response.data.nom,
@@ -69,7 +68,6 @@ export class EditElevesComponent implements OnInit {
     }
   }
 
-  // Méthode pour charger la liste des auto-écoles
   loadAutoecoleList() {
     this.eleveService.getAutoecoleList().subscribe(
       (data: any) => {
@@ -88,7 +86,7 @@ export class EditElevesComponent implements OnInit {
       this.eleveService.editEleve(updatedEleve).subscribe(
         (response: any) => {
           if (response.success) {
-            this.router.navigate(['/']); // Rediriger vers la liste des élèves ou une autre page
+            this.router.navigate(['/']); 
           } else {
             alert('Erreur lors de la mise à jour de l\'élève');
           }
