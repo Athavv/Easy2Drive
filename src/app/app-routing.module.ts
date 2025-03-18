@@ -6,9 +6,11 @@ import { EditElevesComponent } from './admin/eleves/edit-eleves/edit-eleves.comp
 import { ListAutoecolesComponent } from './admin/autoecoles/list-autoecoles/list-autoecoles.component';
 import { EditAutoecoleComponent } from './admin/autoecoles/edit-autoecole/edit-autoecole.component';
 import { AddAutoecoleComponent } from './admin/autoecoles/add-autoecole/add-autoecole.component';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 
 export const routes: Routes = [
-  { path: '', component: ListElevesComponent, pathMatch: 'full' }, 
+  { path: '', component: HomeAdminComponent, pathMatch: 'full' }, 
+  { path: 'list-eleves', component: ListElevesComponent}, 
   { path: 'add-eleves', component: AddElevesComponent }, 
   { path: 'modifier/:id', component: EditElevesComponent },
   { path: 'add-autoecoles', component: AddAutoecoleComponent }, 

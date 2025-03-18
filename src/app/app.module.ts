@@ -11,6 +11,8 @@ import { EditElevesComponent } from './admin/eleves/edit-eleves/edit-eleves.comp
 import { ListAutoecolesComponent } from './admin/autoecoles/list-autoecoles/list-autoecoles.component';
 import { EditAutoecoleComponent } from './admin/autoecoles/edit-autoecole/edit-autoecole.component';
 import { AddAutoecoleComponent } from './admin/autoecoles/add-autoecole/add-autoecole.component';
+import { SidebarComponent } from './menu/sidebar/sidebar.component';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { AddAutoecoleComponent } from './admin/autoecoles/add-autoecole/add-auto
     ListAutoecolesComponent,
     EditAutoecoleComponent,
     AddAutoecoleComponent,
+    SidebarComponent,
+    HomeAdminComponent,
   ],
   imports: [
     BrowserModule,
