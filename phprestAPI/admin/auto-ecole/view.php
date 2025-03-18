@@ -11,21 +11,22 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-require_once 'db_connect.php';
+require_once '../../db_connect.php';
 $database = new Operations();
 $pdo = $database->dbConnection();
 
 $id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) : null;
 
 try {
-    $query = "SELECT e.*, a.nom AS autoecole_nom 
-              FROM eleve e 
-              JOIN autoecole a ON e.id_autoecole = a.id_autoecole";
+    // Requête SQL pour récupérer les auto-écoles
+    $query = "SELECT * FROM autoecole";
 
+    // Si un ID est fourni, on filtre pour récupérer une auto-école spécifique
     if ($id) {
-        $query .= " WHERE e.id_eleve = :id";
+        $query .= " WHERE id_autoecole = :id";
     } else {
-        $query .= " ORDER BY e.id_eleve";
+        // Sinon, on récupère toutes les auto-écoles triées par ID
+        $query .= " ORDER BY id_autoecole";
     }
 
     $stmt = $pdo->prepare($query);
@@ -33,6 +34,7 @@ try {
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // Réponse JSON
     echo json_encode(['success' => 1, 'data' => $id ? ($data[0] ?? null) : $data]);
 } catch (PDOException $e) {
     http_response_code(500);

@@ -8,9 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListElevesComponent } from './admin/eleves/list-eleves/list-eleves.component';
 import { AddElevesComponent } from './admin/eleves/add-eleves/add-eleves.component';
 import { EditElevesComponent } from './admin/eleves/edit-eleves/edit-eleves.component';
-import { AddAutoEcolesComponent } from './admin/auto-ecoles/add-auto-ecoles/add-auto-ecoles.component';
-import { ListAutoEcolesComponent } from './admin/auto-ecoles/list-auto-ecoles/list-auto-ecoles.component';
-import { EditAutoEcolesComponent } from './admin/auto-ecoles/edit-auto-ecoles/edit-auto-ecoles.component';
+import { ListAutoecolesComponent } from './admin/autoecoles/list-autoecoles/list-autoecoles.component';
+import { EditAutoecoleComponent } from './admin/autoecoles/edit-autoecole/edit-autoecole.component';
+import { AddAutoecoleComponent } from './admin/autoecoles/add-autoecole/add-autoecole.component';
+
 
 @NgModule({
   declarations: [
@@ -18,17 +19,17 @@ import { EditAutoEcolesComponent } from './admin/auto-ecoles/edit-auto-ecoles/ed
     ListElevesComponent,
     AddElevesComponent,
     EditElevesComponent,
-    AddAutoEcolesComponent,
-    ListAutoEcolesComponent,
-    EditAutoEcolesComponent,
+    ListAutoecolesComponent,
+    EditAutoecoleComponent,
+    AddAutoecoleComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+],
   providers: [],
   bootstrap: [AppComponent]
 })

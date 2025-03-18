@@ -20,73 +20,58 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') :
     exit;
 endif;
 
-require '../db_connect.php'; // Assurez-vous que ce fichier existe et configure la connexion à la base de données
+require '../../db_connect.php'; // Assurez-vous que ce fichier existe et configure la connexion à la base de données
 $database = new Operations();
 $conn = $database->dbConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (!isset($data->id_eleve)) {
-    echo json_encode(['success' => 0, 'message' => 'Please enter correct Eleve id.']);
+if (!isset($data->id_autoecole)) {
+    echo json_encode(['success' => 0, 'message' => 'Please enter correct Autoecole id.']);
     exit;
 }
 
 try {
-    // Récupérer l'élève existant
-    $fetch_post = "SELECT * FROM `eleve` WHERE id_eleve = :id_eleve";
+    // Récupérer l'auto-école existante
+    $fetch_post = "SELECT * FROM `autoecole` WHERE id_autoecole = :id_autoecole";
     $fetch_stmt = $conn->prepare($fetch_post);
-    $fetch_stmt->bindValue(':id_eleve', $data->id_eleve, PDO::PARAM_INT);
+    $fetch_stmt->bindValue(':id_autoecole', $data->id_autoecole, PDO::PARAM_INT);
     $fetch_stmt->execute();
 
     if ($fetch_stmt->rowCount() > 0) :
         $row = $fetch_stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Récupérer les données du formulaire ou utiliser les valeurs existantes
+        // Récupérer les nouvelles valeurs ou conserver les anciennes si non fournies
         $nom = isset($data->nom) ? $data->nom : $row['nom'];
-        $prenom = isset($data->prenom) ? $data->prenom : $row['prenom'];
-        $date_naissance = isset($data->date_naissance) ? $data->date_naissance : $row['date_naissance'];
         $adresse = isset($data->adresse) ? $data->adresse : $row['adresse'];
-        $date_inscription = isset($data->date_inscription) ? $data->date_inscription : $row['date_inscription'];
-        $npeh = isset($data->npeh) ? $data->npeh : $row['npeh'];
+        $telephone = isset($data->telephone) ? $data->telephone : $row['telephone'];
         $identifiant = isset($data->identifiant) ? $data->identifiant : $row['identifiant'];
         $mot_de_passe = isset($data->mot_de_passe) ? $data->mot_de_passe : $row['mot_de_passe'];
-        $genre = isset($data->genre) ? $data->genre : $row['genre'];
-        $id_autoecole = isset($data->id_autoecole) ? $data->id_autoecole : $row['id_autoecole'];
 
-        // Requête SQL pour mettre à jour l'élève
-        $update_query = "UPDATE `eleve` SET 
+        // Requête SQL pour mettre à jour l'auto-école
+        $update_query = "UPDATE `autoecole` SET 
             nom = :nom,
-            prenom = :prenom,
-            date_naissance = :date_naissance,
             adresse = :adresse,
-            date_inscription = :date_inscription,
-            npeh = :npeh,
+            telephone = :telephone,
             identifiant = :identifiant,
-            mot_de_passe = :mot_de_passe,
-            genre = :genre,
-            id_autoecole = :id_autoecole
-            WHERE id_eleve = :id_eleve";
+            mot_de_passe = :mot_de_passe
+            WHERE id_autoecole = :id_autoecole";
 
         $update_stmt = $conn->prepare($update_query);
 
         // Liaison des valeurs
         $update_stmt->bindValue(':nom', htmlspecialchars(strip_tags($nom)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':prenom', htmlspecialchars(strip_tags($prenom)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':date_naissance', htmlspecialchars(strip_tags($date_naissance)), PDO::PARAM_STR);
         $update_stmt->bindValue(':adresse', htmlspecialchars(strip_tags($adresse)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':date_inscription', htmlspecialchars(strip_tags($date_inscription)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':npeh', htmlspecialchars(strip_tags($npeh)), PDO::PARAM_STR);
+        $update_stmt->bindValue(':telephone', htmlspecialchars(strip_tags($telephone)), PDO::PARAM_STR);
         $update_stmt->bindValue(':identifiant', htmlspecialchars(strip_tags($identifiant)), PDO::PARAM_STR);
         $update_stmt->bindValue(':mot_de_passe', htmlspecialchars(strip_tags($mot_de_passe)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':genre', htmlspecialchars(strip_tags($genre)), PDO::PARAM_STR);
-        $update_stmt->bindValue(':id_autoecole', htmlspecialchars(strip_tags($id_autoecole)), PDO::PARAM_INT);
-        $update_stmt->bindValue(':id_eleve', $data->id_eleve, PDO::PARAM_INT);
+        $update_stmt->bindValue(':id_autoecole', $data->id_autoecole, PDO::PARAM_INT);
 
         // Exécution de la requête
         if ($update_stmt->execute()) {
             echo json_encode([
                 'success' => 1,
-                'message' => 'Record updated successfully'
+                'message' => 'Autoecole updated successfully'
             ]);
             exit;
         }

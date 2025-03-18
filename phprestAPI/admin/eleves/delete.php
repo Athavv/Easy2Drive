@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
     exit;
 }
 
-require '../db_connect.php';
+require '../../db_connect.php';
 $database = new Operations();
 $conn = $database->dbConnection();
 

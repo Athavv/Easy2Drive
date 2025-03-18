@@ -19,32 +19,34 @@ if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
     exit;
 }
 
-require 'db_connect.php';
+require '../../db_connect.php'; // Assurez-vous que ce fichier existe et configure la connexion à la base de données
 $database = new Operations();
 $conn = $database->dbConnection();
 
 $id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) : null;
 
 if (!$id) {
-    echo json_encode(['success' => 0, 'message' => 'Veuillez fournir un ID valide pour l\'élève.']);
+    echo json_encode(['success' => 0, 'message' => 'Veuillez fournir un ID valide pour l\'auto-école.']);
     exit;
 }
 
 try {
-    $fetch_eleve = "SELECT * FROM `eleve` WHERE id_eleve=:id";
-    $fetch_stmt = $conn->prepare($fetch_eleve);
+    // Vérifier si l'auto-école existe
+    $fetch_autoecole = "SELECT * FROM `autoecole` WHERE id_autoecole = :id";
+    $fetch_stmt = $conn->prepare($fetch_autoecole);
     $fetch_stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $fetch_stmt->execute();
 
     if ($fetch_stmt->rowCount() > 0) {
-        $delete_eleve = "DELETE FROM `eleve` WHERE id_eleve=:id";
-        $delete_stmt = $conn->prepare($delete_eleve);
+        // Supprimer l'auto-école
+        $delete_autoecole = "DELETE FROM `autoecole` WHERE id_autoecole = :id";
+        $delete_stmt = $conn->prepare($delete_autoecole);
         $delete_stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         if ($delete_stmt->execute()) {
             echo json_encode([
                 'success' => 1,
-                'message' => 'Élève supprimé avec succès'
+                'message' => 'Auto-école supprimée avec succès'
             ]);
             exit;
         }
@@ -55,7 +57,7 @@ try {
         ]);
         exit;
     } else {
-        echo json_encode(['success' => 0, 'message' => 'ID invalide. Aucun élève trouvé avec cet ID.']);
+        echo json_encode(['success' => 0, 'message' => 'ID invalide. Aucune auto-école trouvée avec cet ID.']);
         exit;
     }
 } catch (PDOException $e) {

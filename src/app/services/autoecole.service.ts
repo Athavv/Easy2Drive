@@ -7,36 +7,34 @@ import { Autoecole } from '../modules/autoecoles';
   providedIn: 'root'
 })
 export class AutoecoleService {
-
-  // URL de base de l'API PHP
-  private baseUrl: string = 'http://localhost/phprestAPI/';
+  private apiUrl = 'http://localhost/phprestAPI/admin/auto-ecole'; // URL de l'API
 
   constructor(private http: HttpClient) {}
 
-  // Récupérer toutes les auto-écoles
-  getAutoecoles(): Observable<Autoecole[]> {
-    return this.http.get<Autoecole[]>(`${this.baseUrl}admin/autoecoles/view.php`);
+  // Créer une nouvelle auto-école
+  createAutoecole(autoecole: Autoecole): Observable<any> {
+    return this.http.post(`${this.apiUrl}/insert.php`, autoecole);
   }
 
-  // Récupérer une auto-école spécifique par son ID
-  getSingleAutoecole(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}admin/autoecoles/view.php?id=${id}`);
+  // Récupérer toutes les auto-écoles
+  getAutoecoles(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/view.php`);
   }
 
   // Supprimer une auto-école par ID
   deleteAutoecole(id: number): Observable<any> {
-    const url = `${this.baseUrl}admin/autoecoles/delete.php?id=${id}`;
-    console.log('URL de suppression :', url); // Pour déboguer
-    return this.http.delete(url);
+    return this.http.delete(`${this.apiUrl}/delete.php?id=${id}`);
   }
 
-  // Créer une nouvelle auto-école
-  createAutoecole(autoecole: Autoecole): Observable<any> {
-    return this.http.post(`${this.baseUrl}admin/autoecoles/insert.php`, autoecole);
+    // Récupérer une auto-école par son ID
+  getSingleAutoecole(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/view.php?id=${id}`);
   }
-
-  // Modifier une auto-école existante
+  
+  // Modifier une auto-école
   editAutoecole(autoecole: Autoecole): Observable<any> {
-    return this.http.put(`${this.baseUrl}admin/autoecoles/update.php`, autoecole);
+    return this.http.put(`${this.apiUrl}/update.php`, autoecole);
   }
+
+  
 }

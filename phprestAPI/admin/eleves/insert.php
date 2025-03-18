@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-require '../db_connect.php';
+require '../../db_connect.php';
 $database = new Operations();
 $conn = $database->dbConnection();
 
@@ -44,7 +44,6 @@ try {
     $genre = htmlspecialchars(trim($data->genre));
     $id_autoecole = intval($data->id_autoecole);
 
-    // Vérifier si l'auto-école existe
     $query_check = "SELECT id_autoecole FROM autoecole WHERE id_autoecole = :id_autoecole";
     $stmt_check = $conn->prepare($query_check);
     $stmt_check->bindValue(':id_autoecole', $id_autoecole, PDO::PARAM_INT);
@@ -56,7 +55,6 @@ try {
         exit;
     }
 
-    // Vérifier si l'identifiant est unique
     $query_identifiant = "SELECT id_eleve FROM eleve WHERE identifiant = :identifiant";
     $stmt_identifiant = $conn->prepare($query_identifiant);
     $stmt_identifiant->bindValue(':identifiant', $identifiant, PDO::PARAM_STR);
@@ -68,7 +66,6 @@ try {
         exit;
     }
 
-    // Insertion de l'élève
     $query = "INSERT INTO eleve (nom, prenom, date_naissance, adresse, date_inscription, npeh, identifiant, mot_de_passe, genre, id_autoecole) 
               VALUES (:nom, :prenom, :date_naissance, :adresse, :date_inscription, :npeh, :identifiant, :mot_de_passe, :genre, :id_autoecole)";
     

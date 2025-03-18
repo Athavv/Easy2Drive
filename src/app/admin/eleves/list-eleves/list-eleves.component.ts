@@ -29,7 +29,6 @@ export class ListElevesComponent implements OnInit {
 
 
   deleteEleve(eleve:any){
-    // console.log(id);
      this.eleveService.deleteEleve(eleve.id_eleve).subscribe(data=>{
        this.eleves = this.eleves.filter((u: any) => u !== eleve);
      })

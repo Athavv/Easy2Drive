@@ -66,7 +66,10 @@ export class EditElevesComponent implements OnInit {
         }
       );
     }
-  }
+
+    // Charger la liste des auto-écoles
+    this.loadAutoecoleList();
+}
 
   loadAutoecoleList() {
     this.eleveService.getAutoecoleList().subscribe(

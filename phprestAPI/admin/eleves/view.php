@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-require_once '../db_connect.php';
+require_once '../../db_connect.php';
 $database = new Operations();
 $pdo = $database->dbConnection();
 

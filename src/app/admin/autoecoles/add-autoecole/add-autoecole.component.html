@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="text-center"><h1>AJOUTER UNE NOUVELLE AUTO-ÉCOLE</h1></div>
+    <div style="width:50%; margin:auto">
+      <form [formGroup]="addForm" novalidate class="form" (ngSubmit)="onSubmit()">
+  
+        <!-- Nom -->
+        <div class="row">
+          <div class="col-md-6">Nom</div>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="nom" formControlName="nom" required>
+          </div>
+        </div>
+  
+        <!-- Adresse -->
+        <div class="row">
+          <div class="col-md-6">Adresse</div>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="adresse" formControlName="adresse" required>
+          </div>
+        </div>
+  
+        <!-- Téléphone -->
+        <div class="row">
+          <div class="col-md-6">Téléphone</div>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="telephone" formControlName="telephone" required>
+          </div>
+        </div>
+  
+        <!-- Identifiant -->
+        <div class="row">
+          <div class="col-md-6">Identifiant</div>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="identifiant" formControlName="identifiant" required>
+          </div>
+        </div>
+  
+        <!-- Mot de passe -->
+        <div class="row">
+          <div class="col-md-6">Mot de passe</div>
+          <div class="col-md-6">
+            <input type="password" class="form-control" name="mot_de_passe" formControlName="mot_de_passe" required>
+          </div>
+        </div>
+  
+        <!-- Bouton de soumission -->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button class="btn btn-success" type="submit" [disabled]="!addForm.valid">AJOUTER AUTO-ÉCOLE</button>
+          </div>
+        </div>
+  
+      </form>
+    </div>
+  </div>

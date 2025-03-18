@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListAutoEcolesComponent } from './list-auto-ecoles.component';
+import { EditAutoecoleComponent } from './edit-autoecole.component';
 
-describe('ListAutoEcolesComponent', () => {
-  let component: ListAutoEcolesComponent;
-  let fixture: ComponentFixture<ListAutoEcolesComponent>;
+describe('EditAutoecoleComponent', () => {
+  let component: EditAutoecoleComponent;
+  let fixture: ComponentFixture<EditAutoecoleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ListAutoEcolesComponent]
+      declarations: [EditAutoecoleComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListAutoEcolesComponent);
+    fixture = TestBed.createComponent(EditAutoecoleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -26,7 +26,6 @@ export class EleveService {
   // Supprimer un élève par ID
   deleteEleve(id: number): Observable<any> {
     const url = `${this.baseUrl}admin/eleves/delete.php?id=${id}`;
-    console.log('URL de suppression :', url); 
     return this.http.delete(url);
   }
 
