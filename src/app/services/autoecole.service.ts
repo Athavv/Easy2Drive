@@ -36,5 +36,6 @@ export class AutoecoleService {
     return this.http.put(`${this.apiUrl}/update.php`, autoecole);
   }
 
+
   
 }

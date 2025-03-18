@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Liste des élèves</h2>
+    <h2>Liste des élèves de l'auto-école</h2>
   
     <table class="table table-striped">
       <thead class="bg-primary text-white">
@@ -19,11 +19,7 @@
           <td>{{ eleve.prenom }}</td>
           <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
           <td>{{ eleve.genre }}</td>
-          <td>
-            <a [routerLink]="['/modifier', eleve.id_eleve]" class="btn btn-success">Modifier</a>
-            <button (click)="deleteEleve(eleve)" class="btn btn-danger ms-2">Supprimer</button>
-            <a [routerLink]="['/scores-eleve', eleve.id_eleve]" class="btn btn-info ms-2">Voir les scores</a>
-          </td>
+          <td><a [routerLink]="['/scores-eleve', eleve.id_eleve]" class="btn btn-info ms-2">Voir les scores</a></td>
         </tr>
       </tbody>
     </table>

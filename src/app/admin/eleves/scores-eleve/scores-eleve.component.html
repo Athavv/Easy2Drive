@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>Scores de l'élève</h2>
+  
+    <!-- Liste des scores -->
+    <table class="table table-striped">
+      <thead class="bg-primary text-white">
+        <tr>
+          <th>#</th>
+          <th>Thème</th>
+          <th>Date du test</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let score of scores; let i = index;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ score.theme }}</td>
+          <td>{{ score.date_test | date:'dd/MM/yyyy' }}</td>
+          <td>{{ score.score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Formulaire pour ajouter un nouveau score -->
+    <h3>Ajouter un nouveau score</h3>
+    <form (ngSubmit)="addScore()">
+      <div class="form-group">
+        <label for="theme">Thème</label>
+        <input type="text" class="form-control" id="theme" [(ngModel)]="newScore.theme" name="theme" required>
+      </div>
+      <div class="form-group">
+        <label for="date_test">Date du test</label>
+        <input type="date" class="form-control" id="date_test" [(ngModel)]="newScore.date_test" name="date_test" required>
+      </div>
+      <div class="form-group">
+        <label for="score">Score</label>
+        <input type="number" class="form-control" id="score" [(ngModel)]="newScore.score" name="score" min="0" max="100" required>
+      </div>
+      <button type="submit" class="btn btn-success">Ajouter</button>
+    </form>
+  </div>

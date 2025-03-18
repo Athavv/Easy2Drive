@@ -13,6 +13,8 @@ import { EditAutoecoleComponent } from './admin/autoecoles/edit-autoecole/edit-a
 import { AddAutoecoleComponent } from './admin/autoecoles/add-autoecole/add-autoecole.component';
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { ElevesAutoecoleComponent } from './admin/autoecoles/eleves-autoecole/eleves-autoecole.component';
+import { ScoresEleveComponent } from './admin/eleves/scores-eleve/scores-eleve.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
     AddAutoecoleComponent,
     SidebarComponent,
     HomeAdminComponent,
+    ElevesAutoecoleComponent,
+    ScoresEleveComponent,
   ],
   imports: [
     BrowserModule,
