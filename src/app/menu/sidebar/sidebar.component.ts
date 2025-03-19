@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service'; // Assurez-vous que le chemin est correct
 
 @Component({
   selector: 'app-sidebar',
@@ -13,6 +14,8 @@ export class SidebarComponent {
     eleves: false,
     autoEcoles: false,
   }; // État des sous-menus
+
+  constructor(private authService: AuthService) {}
 
   // Méthode pour basculer l'état de la sidebar
   toggleSidebar() {
@@ -47,6 +50,10 @@ export class SidebarComponent {
   // Méthode pour vérifier si un sous-menu est ouvert
   isSubMenuOpen(menu: string): boolean {
     return this.openSubMenus[menu];
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }
 

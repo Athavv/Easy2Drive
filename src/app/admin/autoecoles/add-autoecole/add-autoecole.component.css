@@ -1,0 +1,11 @@
+.app-container {
+    display: flex; /* Utilisation de flexbox pour une disposition horizontale */
+    min-height: 100vh; /* Hauteur minimale de la vue */
+  }
+  
+  .main-content {
+    flex-grow: 1; /* Le contenu principal prend tout l'espace restant */
+    padding: 20px; /* Espacement intérieur */
+    overflow-y: auto; /* Permet le défilement vertical si le contenu est trop long */
+  }
+  

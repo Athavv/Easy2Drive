@@ -6,20 +6,23 @@ import { EditElevesComponent } from './admin/eleves/edit-eleves/edit-eleves.comp
 import { ListAutoecolesComponent } from './admin/autoecoles/list-autoecoles/list-autoecoles.component';
 import { EditAutoecoleComponent } from './admin/autoecoles/edit-autoecole/edit-autoecole.component';
 import { AddAutoecoleComponent } from './admin/autoecoles/add-autoecole/add-autoecole.component';
-import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
-import { ElevesAutoecoleComponent } from './admin/autoecoles/eleves-autoecole/eleves-autoecole.component'; // Nouveau composant
-import { ScoresEleveComponent } from './admin/eleves/scores-eleve/scores-eleve.component'; // Nouveau composant
+import { HomeAdminComponent } from './admin/autoecoles/home-admin/home-admin.component';
+import { ElevesAutoecoleComponent } from './admin/autoecoles/eleves-autoecole/eleves-autoecole.component';
+import { ScoresEleveComponent } from './admin/eleves/scores-eleve/scores-eleve.component';
+import { LoginComponent } from './login/login.component'; // Importez le composant de connexion
+import { AuthGuard } from './guard/auth.guard'; // Importez le guard
 
 export const routes: Routes = [
-  { path: '', component: HomeAdminComponent, pathMatch: 'full' }, 
-  { path: 'list-eleves', component: ListElevesComponent}, 
-  { path: 'add-eleves', component: AddElevesComponent }, 
-  { path: 'modifier/:id', component: EditElevesComponent },
-  { path: 'add-autoecoles', component: AddAutoecoleComponent }, 
-  { path: 'list-autoecoles', component: ListAutoecolesComponent },
-  { path: 'modifier-autoecole/:id', component: EditAutoecoleComponent },
-  { path: 'eleves-autoecole/:id', component: ElevesAutoecoleComponent },
-  { path: 'scores-eleve/:id', component: ScoresEleveComponent },
+  { path: 'login', component: LoginComponent }, 
+  { path: '', component: HomeAdminComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
+  { path: 'list-eleves', component: ListElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
+  { path: 'add-eleves', component: AddElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
+  { path: 'modifier/:id', component: EditElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
+  { path: 'add-autoecoles', component: AddAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
+  { path: 'list-autoecoles', component: ListAutoecolesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
+  { path: 'modifier-autoecole/:id', component: EditAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
+  { path: 'eleves-autoecole/:id', component: ElevesAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
+  { path: 'scores-eleve/:id', component: ScoresEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: '**', redirectTo: '' }
 ];
 
