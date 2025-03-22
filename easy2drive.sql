@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 19 mars 2025 à 23:27
+-- Généré le : sam. 22 mars 2025 à 18:59
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -78,12 +78,19 @@ INSERT INTO `autoecole` (`id_autoecole`, `nom`, `adresse`, `telephone`, `identif
 CREATE TABLE `avis` (
   `id_avis` int(11) NOT NULL,
   `id_eleve` int(11) DEFAULT NULL,
-  `id_autoecole` int(11) DEFAULT NULL,
-  `contenu` text DEFAULT NULL,
+  `commentaire` text DEFAULT NULL,
+  `date_commentaire` datetime DEFAULT current_timestamp(),
   `date_depot` date DEFAULT NULL,
-  `date_publication` date DEFAULT NULL,
   `statut` enum('En attente','Publié','Refusé') DEFAULT 'En attente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `avis`
+--
+
+INSERT INTO `avis` (`id_avis`, `id_eleve`, `commentaire`, `date_commentaire`, `date_depot`, `statut`) VALUES
+(1, 1, 'seffsefesfsef', '2025-03-22 17:36:34', '2025-03-22', 'En attente'),
+(2, 1, 'efsefes fesfsf esf', '2025-03-22 17:36:34', '2025-03-22', 'En attente');
 
 -- --------------------------------------------------------
 
@@ -168,10 +175,10 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`id_test`, `id_eleve`, `theme`, `date_test`, `score`) VALUES
-(1, 1, 'cACA TEST', '2025-03-18', 40),
+(1, 1, 'sss', '2025-03-18', 85),
 (2, 1, 'lol', '2025-03-18', 40),
-(3, 1, '', '2025-03-18', 0),
-(4, 5, 'akkalaand', '2025-03-18', 5);
+(4, 5, 'akkalaand', '2025-03-18', 5),
+(6, 1, 'zdzdz', '2025-03-22', 0);
 
 --
 -- Index pour les tables déchargées
@@ -249,7 +256,7 @@ ALTER TABLE `autoecole`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `eleve`
@@ -273,7 +280,7 @@ ALTER TABLE `inscription`
 -- AUTO_INCREMENT pour la table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id_test` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_test` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées

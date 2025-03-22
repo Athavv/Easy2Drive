@@ -13,10 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard'; 
 import { HomeEleveComponent } from './eleve/home-eleve/home-eleve.component';
 import { AvisComponent } from './eleve/avis/avis.component'; // Importez le composant Avis
+import { AccueilComponent } from './accueil/accueil.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirige vers /login pour l'URL vide
-  { path: 'login', component: LoginComponent }, // Route pour la page de connexion
+  { path: 'Accueil', component: AccueilComponent },
+  { path: 'login', component: LoginComponent }, 
   { path: 'Admin-Home', component: HomeAdminComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: 'list-eleves', component: ListElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: 'add-eleves', component: AddElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
@@ -28,7 +29,7 @@ export const routes: Routes = [
   { path: 'infos-eleve/:id', component: ScoresEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: 'eleve/profil', component: HomeEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } },
   { path: 'eleve/avis', component: AvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } }, // Route pour les avis
-  { path: '**', redirectTo: '/login' } 
+  { path: '**', redirectTo: '/Accueil' } 
 ];
 
 @NgModule({

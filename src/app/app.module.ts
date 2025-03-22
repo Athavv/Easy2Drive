@@ -18,6 +18,7 @@ import { ScoresEleveComponent } from './admin/eleves/scores-eleve/scores-eleve.c
 import { LoginComponent } from './login/login.component';
 import { HomeEleveComponent } from './eleve/home-eleve/home-eleve.component';
 import { AvisComponent } from './eleve/avis/avis.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AvisComponent } from './eleve/avis/avis.component';
     LoginComponent,
     HomeEleveComponent,
     AvisComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
