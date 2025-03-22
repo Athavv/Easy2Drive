@@ -9,7 +9,9 @@ import { EleveService } from '../../../services/eleve.service';
 })
 export class ListElevesComponent implements OnInit {
   eleves: any[] = [];
-  showAddEleveForm: boolean = false; // Contrôle l'affichage du formulaire
+  showAddEleveForm: boolean = false; // Contrôle l'affichage du formulaire d'ajout
+  showEditModal: boolean = false; // Contrôle l'affichage de la modale de modification
+  selectedEleve: any = null; // Stocke l'élève sélectionné pour la modification
 
   constructor(private eleveService: EleveService) {}
 
@@ -38,6 +40,25 @@ export class ListElevesComponent implements OnInit {
   closeAddEleveForm(): void {
     this.showAddEleveForm = false;
     this.loadEleves(); // Recharger la liste après l'ajout
+  }
+
+  // Ouvrir la modale de modification
+  openEditModal(eleve: any): void {
+    this.selectedEleve = eleve; // Stocke l'élève sélectionné
+    this.showEditModal = true; // Affiche la modale
+  }
+
+  // Fermer la modale de modification
+  closeEditModal(): void {
+    this.showEditModal = false; // Cache la modale
+    this.selectedEleve = null; // Réinitialise l'élève sélectionné
+    this.loadEleves(); // Recharge la liste des élèves
+  }
+
+  // Fermer toutes les modales
+  closeModals(): void {
+    this.closeAddEleveForm();
+    this.closeEditModal();
   }
 
   // Supprimer un élève

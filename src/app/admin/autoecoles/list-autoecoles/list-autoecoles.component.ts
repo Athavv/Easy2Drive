@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AutoecoleService } from '../../../services/autoecole.service';
-import { Autoecole } from '../../../modules/autoecoles';
 
 @Component({
   selector: 'app-list-autoecoles',
@@ -10,7 +9,9 @@ import { Autoecole } from '../../../modules/autoecoles';
 })
 export class ListAutoecolesComponent implements OnInit {
   autoecoles: any[] = [];
-  showAddAutoecoleForm: boolean = false; // Contrôle l'affichage du formulaire
+  showAddAutoecoleForm: boolean = false; // Contrôle l'affichage du formulaire d'ajout
+  showEditModal: boolean = false; // Contrôle l'affichage de la modale de modification
+  selectedAutoecole: any = null; // Stocke l'auto-école sélectionnée pour la modification
 
   constructor(private autoecoleService: AutoecoleService) {}
 
@@ -41,10 +42,43 @@ export class ListAutoecolesComponent implements OnInit {
     this.loadAutoecoles(); // Recharger la liste après l'ajout
   }
 
+  // Ouvrir la modale de modification
+  openEditModal(autoecole: any): void {
+    this.selectedAutoecole = autoecole; // Stocke l'auto-école sélectionnée
+    this.showEditModal = true; // Affiche la modale
+  }
+
+  // Fermer la modale de modification
+  closeEditModal(): void {
+    this.showEditModal = false; // Cache la modale
+    this.selectedAutoecole = null; // Réinitialise l'auto-école sélectionnée
+    this.loadAutoecoles(); // Recharge la liste des auto-écoles
+  }
+
+  // Fermer toutes les modales
+  closeModals(): void {
+    this.closeAddAutoecoleForm();
+    this.closeEditModal();
+  }
+
   // Supprimer une auto-école
   deleteAutoecole(autoecole: any): void {
-    this.autoecoleService.deleteAutoecole(autoecole.id_autoecole).subscribe(data => {
-      this.autoecoles = this.autoecoles.filter((u: any) => u !== autoecole);
-    });
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette auto-école ?')) {
+      this.autoecoleService.deleteAutoecole(autoecole.id_autoecole).subscribe(
+        (response: any) => {
+          if (response.success) {
+            // Filtrer la liste des auto-écoles pour supprimer l'auto-école supprimée
+            this.autoecoles = this.autoecoles.filter((e: any) => e.id_autoecole !== autoecole.id_autoecole);
+            alert('Auto-école supprimée avec succès.');
+          } else {
+            alert('Erreur : ' + response.message);
+          }
+        },
+        (error) => {
+          console.error('Erreur HTTP :', error);
+          alert('Impossible de se connecter au serveur.');
+        }
+      );
+    }
   }
 }

@@ -3,7 +3,7 @@
   <div class="container">
     <h2>Liste des élèves</h2>
 
-    <!-- Bouton pour ouvrir le formulaire -->
+    <!-- Bouton pour ouvrir le formulaire d'ajout -->
     <button class="btn btn-primary float-end mb-3" (click)="openAddEleveForm()">Ajouter un élève</button>
 
     <!-- Tableau des élèves -->
@@ -26,7 +26,7 @@
           <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
           <td>{{ eleve.genre }}</td>
           <td>
-            <a [routerLink]="['/modifier', eleve.id_eleve]" class="btn btn-success">Modifier</a>
+            <button (click)="openEditModal(eleve)" class="btn btn-success">Modifier</button>
             <button (click)="deleteEleve(eleve)" class="btn btn-danger ms-2">Supprimer</button>
             <a [routerLink]="['/infos-eleve', eleve.id_eleve]" class="btn btn-info ms-2">Voir plus</a>
           </td>
@@ -35,11 +35,16 @@
     </table>
 
     <!-- Fond noir (affiché conditionnellement) -->
-    <div *ngIf="showAddEleveForm" class="modal-backdrop" (click)="closeAddEleveForm()"></div>
+    <div *ngIf="showAddEleveForm || showEditModal" class="modal-backdrop" (click)="closeModals()"></div>
 
     <!-- Formulaire d'ajout d'un élève (affiché conditionnellement) -->
     <div *ngIf="showAddEleveForm" class="modal-content">
       <app-add-eleves (closeForm)="closeAddEleveForm()"></app-add-eleves>
+    </div>
+
+    <!-- Formulaire de modification d'un élève (affiché conditionnellement) -->
+    <div *ngIf="showEditModal" class="modal-content">
+      <app-edit-eleves [eleve]="selectedEleve" (closeForm)="closeEditModal()"></app-edit-eleves>
     </div>
   </div>
 </div>

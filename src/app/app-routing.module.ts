@@ -16,7 +16,7 @@ import { AvisComponent } from './eleve/avis/avis.component'; // Importez le comp
 import { AccueilComponent } from './accueil/accueil.component';
 
 export const routes: Routes = [
-  { path: 'Accueil', component: AccueilComponent },
+  { path: '', component: AccueilComponent },
   { path: 'login', component: LoginComponent }, 
   { path: 'Admin-Home', component: HomeAdminComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: 'list-eleves', component: ListElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 

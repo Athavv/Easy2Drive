@@ -3,7 +3,7 @@
   <div class="container">
     <h2>Liste des auto-écoles</h2>
 
-    <!-- Bouton pour ouvrir le formulaire -->
+    <!-- Bouton pour ouvrir le formulaire d'ajout -->
     <button class="btn btn-primary float-end mb-3" (click)="openAddAutoecoleForm()">Ajouter une auto-école</button>
 
     <!-- Tableau des auto-écoles -->
@@ -24,7 +24,7 @@
           <td>{{ autoecole.adresse }}</td>
           <td>{{ autoecole.telephone }}</td>
           <td>
-            <a [routerLink]="['/modifier-autoecole', autoecole.id_autoecole]" class="btn btn-success">Modifier</a>
+            <button (click)="openEditModal(autoecole)" class="btn btn-success">Modifier</button>
             <button (click)="deleteAutoecole(autoecole)" class="btn btn-danger ms-2">Supprimer</button>
             <a [routerLink]="['/infos-autoecole', autoecole.id_autoecole]" class="btn btn-info ms-2">Voir plus</a>
           </td>
@@ -33,11 +33,16 @@
     </table>
 
     <!-- Fond noir (affiché conditionnellement) -->
-    <div *ngIf="showAddAutoecoleForm" class="modal-backdrop" (click)="closeAddAutoecoleForm()"></div>
+    <div *ngIf="showAddAutoecoleForm || showEditModal" class="modal-backdrop" (click)="closeModals()"></div>
 
     <!-- Formulaire d'ajout d'une auto-école (affiché conditionnellement) -->
     <div *ngIf="showAddAutoecoleForm" class="modal-content">
       <app-add-autoecole (closeForm)="closeAddAutoecoleForm()"></app-add-autoecole>
+    </div>
+
+    <!-- Formulaire de modification d'une auto-école (affiché conditionnellement) -->
+    <div *ngIf="showEditModal" class="modal-content">
+      <app-edit-autoecole [autoecole]="selectedAutoecole" (closeForm)="closeEditModal()"></app-edit-autoecole>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="app-container">
-  <app-sidebar></app-sidebar>
+  <app-sidebar></app-sidebar> <!-- Conserver la sidebar -->
   <div class="container-fluid mt-4">
     <div class="row">
       <!-- Bloc en haut à gauche : Informations de l'élève -->
@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <!-- Bloc en bas à gauche : Avis (à compléter plus tard) -->
+        <!-- Bloc en bas à gauche : Avis -->
         <div class="card">
           <div class="card-body">
             <h2 class="card-title">Avis</h2>
@@ -36,52 +36,6 @@
 
             <!-- Bouton pour ouvrir le formulaire d'ajout de score -->
             <button class="btn btn-primary mb-3" (click)="openAddScoreForm()">Ajouter un score</button>
-
-            <!-- Formulaire d'ajout de score (affiché conditionnellement) -->
-            <div *ngIf="showAddScoreForm" class="card mb-3">
-              <div class="card-body">
-                <h3>Ajouter un nouveau score</h3>
-                <form (ngSubmit)="addScore()">
-                  <div class="form-group">
-                    <label for="theme">Thème</label>
-                    <input type="text" class="form-control" id="theme" [(ngModel)]="newScore.theme" name="theme" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="date_test">Date du test</label>
-                    <input type="date" class="form-control" id="date_test" [(ngModel)]="newScore.date_test" name="date_test" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="score">Score</label>
-                    <input type="number" class="form-control" id="score" [(ngModel)]="newScore.score" name="score" min="0" max="100" required>
-                  </div>
-                  <button type="submit" class="btn btn-success">Ajouter</button>
-                  <button type="button" class="btn btn-secondary ml-2" (click)="closeAddScoreForm()">Annuler</button>
-                </form>
-              </div>
-            </div>
-
-            <!-- Formulaire de modification de score (affiché conditionnellement) -->
-            <div *ngIf="showEditScoreForm" class="card mb-3">
-              <div class="card-body">
-                <h3>Modifier le score</h3>
-                <form (ngSubmit)="updateScore()">
-                  <div class="form-group">
-                    <label for="edit-theme">Thème</label>
-                    <input type="text" class="form-control" id="edit-theme" [(ngModel)]="editScoreData.theme" name="edit-theme" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="edit-date_test">Date du test</label>
-                    <input type="date" class="form-control" id="edit-date_test" [(ngModel)]="editScoreData.date_test" name="edit-date_test" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="edit-score">Score</label>
-                    <input type="number" class="form-control" id="edit-score" [(ngModel)]="editScoreData.score" name="edit-score" min="0" max="100" required>
-                  </div>
-                  <button type="submit" class="btn btn-warning">Mettre à jour</button>
-                  <button type="button" class="btn btn-secondary ml-2" (click)="closeEditScoreForm()">Annuler</button>
-                </form>
-              </div>
-            </div>
 
             <!-- Liste des scores -->
             <table class="table table-striped">
@@ -107,6 +61,58 @@
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modale pour ajouter un score -->
+  <div *ngIf="showAddScoreForm" class="modal-backdrop" (click)="closeAddScoreForm()"></div>
+  <div *ngIf="showAddScoreForm" class="modal-content">
+    <div class="card">
+      <div class="card-body">
+        <h3>Ajouter un nouveau score</h3>
+        <form (ngSubmit)="addScore()">
+          <div class="form-group">
+            <label for="theme">Thème</label>
+            <input type="text" class="form-control" id="theme" [(ngModel)]="newScore.theme" name="theme" required>
+          </div>
+          <div class="form-group">
+            <label for="date_test">Date du test</label>
+            <input type="date" class="form-control" id="date_test" [(ngModel)]="newScore.date_test" name="date_test" required>
+          </div>
+          <div class="form-group">
+            <label for="score">Score</label>
+            <input type="number" class="form-control" id="score" [(ngModel)]="newScore.score" name="score" min="0" max="100" required>
+          </div>
+          <button type="submit" class="btn btn-success">Ajouter</button>
+          <button type="button" class="btn btn-secondary ml-2" (click)="closeAddScoreForm()">Annuler</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modale pour modifier un score -->
+  <div *ngIf="showEditScoreForm" class="modal-backdrop" (click)="closeEditScoreForm()"></div>
+  <div *ngIf="showEditScoreForm" class="modal-content">
+    <div class="card">
+      <div class="card-body">
+        <h3>Modifier le score</h3>
+        <form (ngSubmit)="updateScore()">
+          <div class="form-group">
+            <label for="edit-theme">Thème</label>
+            <input type="text" class="form-control" id="edit-theme" [(ngModel)]="editScoreData.theme" name="edit-theme" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-date_test">Date du test</label>
+            <input type="date" class="form-control" id="edit-date_test" [(ngModel)]="editScoreData.date_test" name="edit-date_test" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-score">Score</label>
+            <input type="number" class="form-control" id="edit-score" [(ngModel)]="editScoreData.score" name="edit-score" min="0" max="100" required>
+          </div>
+          <button type="submit" class="btn btn-warning">Mettre à jour</button>
+          <button type="button" class="btn btn-secondary ml-2" (click)="closeEditScoreForm()">Annuler</button>
+        </form>
       </div>
     </div>
   </div>
