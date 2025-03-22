@@ -1,8 +1,12 @@
 <div class="app-container">
   <app-sidebar></app-sidebar>
-<div class="container">
+  <div class="container">
     <h2>Liste des élèves</h2>
-  
+
+    <!-- Bouton pour ouvrir le formulaire -->
+    <button class="btn btn-primary float-end mb-3" (click)="openAddEleveForm()">Ajouter un élève</button>
+
+    <!-- Tableau des élèves -->
     <table class="table table-striped">
       <thead class="bg-primary text-white">
         <tr>
@@ -29,5 +33,13 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- Fond noir (affiché conditionnellement) -->
+    <div *ngIf="showAddEleveForm" class="modal-backdrop" (click)="closeAddEleveForm()"></div>
+
+    <!-- Formulaire d'ajout d'un élève (affiché conditionnellement) -->
+    <div *ngIf="showAddEleveForm" class="modal-content">
+      <app-add-eleves (closeForm)="closeAddEleveForm()"></app-add-eleves>
+    </div>
   </div>
 </div>

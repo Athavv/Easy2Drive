@@ -31,9 +31,9 @@ export class LoginComponent {
 
           // Rediriger en fonction du rôle
           if (response.user.role === 'admin') {
-            this.router.navigate(['/admin/dashboard']);
+            this.router.navigate(['/admin/home-admin']);
           } else if (response.user.role === 'eleve') {
-            this.router.navigate(['/eleve/profil']);
+            this.router.navigate(['/eleve/home-eleve']);
           }
         } else {
           alert(response?.message || 'Réponse inattendue de l\'API.');

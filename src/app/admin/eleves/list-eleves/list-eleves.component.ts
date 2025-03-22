@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { EleveService } from '../../../services/eleve.service';
-import { Eleve } from '../../../modules/eleves';
-
 
 @Component({
   selector: 'app-list-eleves',
@@ -13,10 +9,16 @@ import { Eleve } from '../../../modules/eleves';
 })
 export class ListElevesComponent implements OnInit {
   eleves: any[] = [];
+  showAddEleveForm: boolean = false; // Contrôle l'affichage du formulaire
 
   constructor(private eleveService: EleveService) {}
 
   ngOnInit(): void {
+    this.loadEleves();
+  }
+
+  // Charger la liste des élèves
+  loadEleves(): void {
     this.eleveService.getEleves().subscribe(
       (result: any) => {
         this.eleves = result.data;
@@ -27,10 +29,21 @@ export class ListElevesComponent implements OnInit {
     );
   }
 
+  // Ouvrir le formulaire d'ajout
+  openAddEleveForm(): void {
+    this.showAddEleveForm = true;
+  }
 
-  deleteEleve(eleve:any){
-     this.eleveService.deleteEleve(eleve.id_eleve).subscribe(data=>{
-       this.eleves = this.eleves.filter((u: any) => u !== eleve);
-     })
-   }
+  // Fermer le formulaire d'ajout
+  closeAddEleveForm(): void {
+    this.showAddEleveForm = false;
+    this.loadEleves(); // Recharger la liste après l'ajout
+  }
+
+  // Supprimer un élève
+  deleteEleve(eleve: any): void {
+    this.eleveService.deleteEleve(eleve.id_eleve).subscribe(data => {
+      this.eleves = this.eleves.filter((u: any) => u !== eleve);
+    });
+  }
 }

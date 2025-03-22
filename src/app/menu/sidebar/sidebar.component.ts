@@ -10,10 +10,6 @@ import { AuthService } from '../../services/auth.service'; // Assurez-vous que l
 export class SidebarComponent {
   isSidebarClosed = false; // État de la sidebar (ouvert/fermé)
   activeLink: string = 'home'; // Lien actif par défaut
-  openSubMenus: { [key: string]: boolean } = {
-    eleves: false,
-    autoEcoles: false,
-  }; // État des sous-menus
 
   constructor(private authService: AuthService) {}
 
@@ -32,28 +28,8 @@ export class SidebarComponent {
     return this.activeLink === link;
   }
 
-  // Méthode pour basculer l'état d'un sous-menu
-  toggleSubMenu(menu: string) {
-    // Si le sous-menu est déjà ouvert, on le ferme, sinon on ferme tous les sous-menus et on ouvre celui-ci
-    if (this.openSubMenus[menu]) {
-      this.openSubMenus[menu] = false;
-    } else {
-      // Ferme tous les sous-menus
-      for (let key in this.openSubMenus) {
-        this.openSubMenus[key] = false;
-      }
-      // Ouvre le sous-menu sélectionné
-      this.openSubMenus[menu] = true;
-    }
-  }
-
-  // Méthode pour vérifier si un sous-menu est ouvert
-  isSubMenuOpen(menu: string): boolean {
-    return this.openSubMenus[menu];
-  }
-
+  // Méthode pour gérer la déconnexion
   onLogout() {
     this.authService.logout();
   }
 }
-

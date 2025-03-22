@@ -1,31 +1,43 @@
 <div class="app-container">
   <app-sidebar></app-sidebar>
-<div class="container">
-  <h2>Liste des auto-écoles</h2>
+  <div class="container">
+    <h2>Liste des auto-écoles</h2>
 
-  <table class="table table-striped">
-    <thead class="bg-primary text-white">
-      <tr>
-        <th>#</th>
-        <th>Nom</th>
-        <th>Adresse</th>
-        <th>Téléphone</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let autoecole of autoecoles; let i = index;">
-        <td>{{ i + 1 }}</td>
-        <td>{{ autoecole.nom }}</td>
-        <td>{{ autoecole.adresse }}</td>
-        <td>{{ autoecole.telephone }}</td>
-        <td>
-          <a [routerLink]="['/modifier-autoecole', autoecole.id_autoecole]" class="btn btn-success">Modifier</a>
-          <button (click)="deleteAutoecole(autoecole)" class="btn btn-danger ms-2">Supprimer</button>
-          <a [routerLink]="['/eleves-autoecole', autoecole.id_autoecole]" class="btn btn-info ms-2">Voir les élèves</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <!-- Bouton pour ouvrir le formulaire -->
+    <button class="btn btn-primary float-end mb-3" (click)="openAddAutoecoleForm()">Ajouter une auto-école</button>
+
+    <!-- Tableau des auto-écoles -->
+    <table class="table table-striped">
+      <thead class="bg-primary text-white">
+        <tr>
+          <th>#</th>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Téléphone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let autoecole of autoecoles; let i = index;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ autoecole.nom }}</td>
+          <td>{{ autoecole.adresse }}</td>
+          <td>{{ autoecole.telephone }}</td>
+          <td>
+            <a [routerLink]="['/modifier-autoecole', autoecole.id_autoecole]" class="btn btn-success">Modifier</a>
+            <button (click)="deleteAutoecole(autoecole)" class="btn btn-danger ms-2">Supprimer</button>
+            <a [routerLink]="['/eleves-autoecole', autoecole.id_autoecole]" class="btn btn-info ms-2">Voir les élèves</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Fond noir (affiché conditionnellement) -->
+    <div *ngIf="showAddAutoecoleForm" class="modal-backdrop" (click)="closeAddAutoecoleForm()"></div>
+
+    <!-- Formulaire d'ajout d'une auto-école (affiché conditionnellement) -->
+    <div *ngIf="showAddAutoecoleForm" class="modal-content">
+      <app-add-autoecole (closeForm)="closeAddAutoecoleForm()"></app-add-autoecole>
+    </div>
+  </div>
 </div>

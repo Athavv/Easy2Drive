@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { AutoecoleService } from '../../../services/autoecole.service'; // Service pour les auto-écoles
-import { Autoecole } from '../../../modules/autoecoles'; 
+import { AutoecoleService } from '../../../services/autoecole.service';
+import { Autoecole } from '../../../modules/autoecoles';
 
 @Component({
   selector: 'app-list-autoecoles',
-  standalone:false,
-  templateUrl: './list-autoecoles.component.html', 
-  styleUrls: ['./list-autoecoles.component.css'] 
+  standalone: false,
+  templateUrl: './list-autoecoles.component.html',
+  styleUrls: ['./list-autoecoles.component.css']
 })
 export class ListAutoecolesComponent implements OnInit {
-  autoecoles: any[] = []; // Liste des auto-écoles
+  autoecoles: any[] = [];
+  showAddAutoecoleForm: boolean = false; // Contrôle l'affichage du formulaire
 
-  constructor(private autoecoleService: AutoecoleService) {} // Injection du service
+  constructor(private autoecoleService: AutoecoleService) {}
 
   ngOnInit(): void {
-    this.loadAutoecoles(); // Charger les auto-écoles au démarrage
+    this.loadAutoecoles();
   }
 
   // Charger la liste des auto-écoles
   loadAutoecoles(): void {
     this.autoecoleService.getAutoecoles().subscribe(
       (result: any) => {
-        this.autoecoles = result.data; // Mettre à jour la liste des auto-écoles
+        this.autoecoles = result.data;
       },
       (error) => {
         console.error("Erreur lors de la récupération des auto-écoles", error);
@@ -29,11 +30,21 @@ export class ListAutoecolesComponent implements OnInit {
     );
   }
 
+  // Ouvrir le formulaire d'ajout
+  openAddAutoecoleForm(): void {
+    this.showAddAutoecoleForm = true;
+  }
 
+  // Fermer le formulaire d'ajout
+  closeAddAutoecoleForm(): void {
+    this.showAddAutoecoleForm = false;
+    this.loadAutoecoles(); // Recharger la liste après l'ajout
+  }
 
-  deleteAutoecole(autoecole:any): void{
-     this.autoecoleService.deleteAutoecole(autoecole.id_autoecole).subscribe(data=>{
-       this.autoecoles = this.autoecoles.filter((u: any) => u !== autoecole);
-     })
-   }
+  // Supprimer une auto-école
+  deleteAutoecole(autoecole: any): void {
+    this.autoecoleService.deleteAutoecole(autoecole.id_autoecole).subscribe(data => {
+      this.autoecoles = this.autoecoles.filter((u: any) => u !== autoecole);
+    });
+  }
 }
