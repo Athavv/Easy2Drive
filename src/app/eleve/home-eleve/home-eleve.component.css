@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }

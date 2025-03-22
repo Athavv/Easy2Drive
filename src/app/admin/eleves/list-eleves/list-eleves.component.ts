@@ -42,8 +42,22 @@ export class ListElevesComponent implements OnInit {
 
   // Supprimer un élève
   deleteEleve(eleve: any): void {
-    this.eleveService.deleteEleve(eleve.id_eleve).subscribe(data => {
-      this.eleves = this.eleves.filter((u: any) => u !== eleve);
-    });
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet élève ?')) {
+      this.eleveService.deleteEleve(eleve.id_eleve).subscribe(
+        (response: any) => {
+          if (response.success) {
+            // Filtrer la liste des élèves pour supprimer l'élève supprimé
+            this.eleves = this.eleves.filter((e: any) => e.id_eleve !== eleve.id_eleve);
+            alert('Élève supprimé avec succès.');
+          } else {
+            alert('Erreur : ' + response.message);
+          }
+        },
+        (error) => {
+          console.error('Erreur HTTP :', error);
+          alert('Impossible de se connecter au serveur.');
+        }
+      );
+    }
   }
 }

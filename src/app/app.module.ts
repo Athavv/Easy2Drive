@@ -16,7 +16,8 @@ import { HomeAdminComponent } from './admin/autoecoles/home-admin/home-admin.com
 import { ElevesAutoecoleComponent } from './admin/autoecoles/eleves-autoecole/eleves-autoecole.component';
 import { ScoresEleveComponent } from './admin/eleves/scores-eleve/scores-eleve.component';
 import { LoginComponent } from './login/login.component';
-import { ProfilComponent } from './eleve/profil/profil.component';
+import { HomeEleveComponent } from './eleve/home-eleve/home-eleve.component';
+import { AvisComponent } from './eleve/avis/avis.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ProfilComponent } from './eleve/profil/profil.component';
     ElevesAutoecoleComponent,
     ScoresEleveComponent,
     LoginComponent,
-    ProfilComponent,
+    HomeEleveComponent,
+    AvisComponent,
   ],
   imports: [
     BrowserModule,

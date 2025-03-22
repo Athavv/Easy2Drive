@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="sidebar">
+        <h2>Informations de l'élève</h2>
+        <div *ngIf="eleve">
+            <p><strong>Nom :</strong> {{ eleve.nom }}</p>
+            <p><strong>Prénom :</strong> {{ eleve.prenom }}</p>
+            <p><strong>Date de naissance :</strong> {{ eleve.date_naissance }}</p>
+            <p><strong>Adresse :</strong> {{ eleve.adresse }}</p>
+            <p><strong>Date d'inscription :</strong> {{ eleve.date_inscription }}</p>
+            <p><strong>Genre :</strong> {{ eleve.genre }}</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>Mes scores</h2>
+        <table *ngIf="scores.length > 0">
+            <thead>
+                <tr>
+                    <th>Test</th>
+                    <th>Date</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let score of scores">
+                    <td>{{ score.theme }}</td>
+                    <td>{{ score.date_test }}</td>
+                    <td>{{ score.score }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p *ngIf="scores.length === 0">Aucun score disponible.</p>
+    </div>
+</div>
+
+<button (click)="onLogout()" class="btn btn-danger">Se déconnecter</button>
+
+<!-- eleve/home-eleve/home-eleve.component.html -->
+<a routerLink="/eleve/avis">Voir plus</a>

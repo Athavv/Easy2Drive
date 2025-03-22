@@ -9,21 +9,26 @@ import { AddAutoecoleComponent } from './admin/autoecoles/add-autoecole/add-auto
 import { HomeAdminComponent } from './admin/autoecoles/home-admin/home-admin.component';
 import { ElevesAutoecoleComponent } from './admin/autoecoles/eleves-autoecole/eleves-autoecole.component';
 import { ScoresEleveComponent } from './admin/eleves/scores-eleve/scores-eleve.component';
-import { LoginComponent } from './login/login.component'; // Importez le composant de connexion
-import { AuthGuard } from './guard/auth.guard'; // Importez le guard
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guard/auth.guard'; 
+import { HomeEleveComponent } from './eleve/home-eleve/home-eleve.component';
+import { AvisComponent } from './eleve/avis/avis.component'; // Importez le composant Avis
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent }, 
-  { path: '', component: HomeAdminComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirige vers /login pour l'URL vide
+  { path: 'login', component: LoginComponent }, // Route pour la page de connexion
+  { path: 'Admin-Home', component: HomeAdminComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: 'list-eleves', component: ListElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: 'add-eleves', component: AddElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: 'modifier/:id', component: EditElevesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: 'add-autoecoles', component: AddAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: 'list-autoecoles', component: ListAutoecolesComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: 'modifier-autoecole/:id', component: EditAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
-  { path: 'eleves-autoecole/:id', component: ElevesAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
-  { path: 'scores-eleve/:id', component: ScoresEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
-  { path: '**', redirectTo: '' }
+  { path: 'infos-autoecole/:id', component: ElevesAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
+  { path: 'infos-eleve/:id', component: ScoresEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
+  { path: 'eleve/profil', component: HomeEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } },
+  { path: 'eleve/avis', component: AvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } }, // Route pour les avis
+  { path: '**', redirectTo: '/login' } 
 ];
 
 @NgModule({

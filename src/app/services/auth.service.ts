@@ -22,7 +22,7 @@ export class AuthService {
   // Méthode pour récupérer les informations de l'élève
   getEleveInfo() {
     const userId = localStorage.getItem('user_id');
-    return this.http.get(`http://localhost/phprestAPI/eleve.php?id=${userId}`);
+    return this.http.get(`http://localhost/phprestAPI/eleve/eleve.php?id=${userId}`);
   }
 
   // Méthode pour vérifier si l'utilisateur est connecté
@@ -42,7 +42,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  getScores(userId: number) {
-    return this.http.get(`http://localhost/phprestAPI/scores.php?id=${userId}`);
+  getScores(userId: any) {
+    return this.http.get(`http://localhost/phprestAPI/eleve/score.php?id=${userId}`);
   }
 }

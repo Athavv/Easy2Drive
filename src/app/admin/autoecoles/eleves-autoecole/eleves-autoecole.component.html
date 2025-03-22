@@ -1,29 +1,64 @@
 <div class="app-container">
   <app-sidebar></app-sidebar>
-<div class="container">
-    <h2>Liste des élèves de l'auto-école</h2>
-  
-    <table class="table table-striped">
-      <thead class="bg-primary text-white">
-        <tr>
-          <th>#</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>Date de naissance</th>
-          <th>Genre</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let eleve of eleves; let i = index;">
-          <td>{{ i + 1 }}</td>
-          <td>{{ eleve.nom }}</td>
-          <td>{{ eleve.prenom }}</td>
-          <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
-          <td>{{ eleve.genre }}</td>
-          <td><a [routerLink]="['/scores-eleve', eleve.id_eleve]" class="btn btn-info ms-2">Voir les scores</a></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <!-- Bloc en haut à gauche : Informations de l'auto-école -->
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">Informations de l'auto-école</h2>
+            <div *ngIf="autoecole">
+              <p><strong>Nom :</strong> {{ autoecole.nom }}</p>
+              <p><strong>Adresse :</strong> {{ autoecole.adresse }}</p>
+              <p><strong>Téléphone :</strong> {{ autoecole.telephone }}</p>
+              <p><strong>Identifiant :</strong> {{ autoecole.identifiant }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloc en bas à gauche : Avis (à compléter plus tard) -->
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Avis</h2>
+            <p>Section pour les avis (à implémenter).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc à droite : Liste des élèves -->
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Élèves de l'auto-école</h2>
+
+            <!-- Tableau des élèves -->
+            <table class="table table-striped">
+              <thead class="bg-primary text-white">
+                <tr>
+                  <th>#</th>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>Date de naissance</th>
+                  <th>Genre</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let eleve of eleves; let i = index;">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ eleve.nom }}</td>
+                  <td>{{ eleve.prenom }}</td>
+                  <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
+                  <td>{{ eleve.genre }}</td>
+                  <td>
+                    <a [routerLink]="['/infos-eleve', eleve.id_eleve]" class="btn btn-info btn-sm">Voir plus</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
