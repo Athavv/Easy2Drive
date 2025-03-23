@@ -1,0 +1,39 @@
+<div class="app-container">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <h2>Gestion des Avis</h2>
+  
+      <table class="table table-striped">
+        <thead class="bg-primary text-white">
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date</th>
+            <th>Commentaire</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let avis of avisList; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ avis.nom }}</td>
+            <td>{{ avis.prenom }}</td>
+            <td>{{ avis.date_commentaire | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ avis.commentaire }}</td>
+            <td>
+              <select class="form-select" [(ngModel)]="avis.statut" (change)="updateStatut(avis)">
+                <option value="Publié">Publié</option>
+                <option value="En attente">En attente</option>
+                <option value="Refusé">Refusé</option>
+              </select>
+            </td>
+            <td>
+              <button (click)="deleteAvis(avis)" class="btn btn-danger">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

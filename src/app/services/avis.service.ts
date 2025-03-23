@@ -10,13 +10,26 @@ export class AvisService {
 
   constructor(private http: HttpClient) {}
 
-  // Récupérer tous les avis
-  getAvis(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/view.php`);
-  }
 
+
+    // Dans avis.service.ts
+  getAvis(statut: string = 'Publié'): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/view.php?statut=${statut}`);
+  }
   // Ajouter un nouvel avis
   addAvis(avis: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/insert.php`, avis);
+  }
+
+  getAllAvis(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/admin-view.php`);
+  }
+
+  updateAvisStatut(id: number, statut: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update-statut.php`, { id_avis: id, statut });
+  }
+
+  deleteAvis(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/delete.php?id=${id}`);
   }
 }

@@ -20,6 +20,7 @@ import { HomeEleveComponent } from './eleve/home-eleve/home-eleve.component';
 import { AvisComponent } from './eleve/avis/avis.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { SidebarEleveComponent } from './menu/sidebar-eleve/sidebar-eleve.component';
+import { AdminAvisComponent } from './admin/avis/admin-avis/admin-avis.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { SidebarEleveComponent } from './menu/sidebar-eleve/sidebar-eleve.compon
     AvisComponent,
     AccueilComponent,
     SidebarEleveComponent,
+    AdminAvisComponent,
   ],
   imports: [
     BrowserModule,

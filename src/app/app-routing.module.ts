@@ -14,6 +14,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { HomeEleveComponent } from './eleve/home-eleve/home-eleve.component';
 import { AvisComponent } from './eleve/avis/avis.component'; // Importez le composant Avis
 import { AccueilComponent } from './accueil/accueil.component';
+import { AdminAvisComponent } from './admin/avis/admin-avis/admin-avis.component';
 
 export const routes: Routes = [
   { path: '', component: AccueilComponent },
@@ -29,6 +30,7 @@ export const routes: Routes = [
   { path: 'infos-eleve/:id', component: ScoresEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: 'eleve/profil', component: HomeEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } },
   { path: 'eleve/avis', component: AvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } }, 
+  { path: 'avis', component: AdminAvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, // Nouvelle route
   { path: '**', redirectTo: '/Accueil' } 
 ];
 
