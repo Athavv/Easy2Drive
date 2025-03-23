@@ -1,39 +1,66 @@
 <div class="container">
-    <div class="sidebar">
-        <h2>Informations de l'élève</h2>
-        <div *ngIf="eleve">
-            <p><strong>Nom :</strong> {{ eleve.nom }}</p>
-            <p><strong>Prénom :</strong> {{ eleve.prenom }}</p>
-            <p><strong>Date de naissance :</strong> {{ eleve.date_naissance }}</p>
-            <p><strong>Adresse :</strong> {{ eleve.adresse }}</p>
-            <p><strong>Date d'inscription :</strong> {{ eleve.date_inscription }}</p>
-            <p><strong>Genre :</strong> {{ eleve.genre }}</p>
+    <app-sidebar-eleve></app-sidebar-eleve>            
+    <div class="info">
+        <div *ngIf="eleve" class="info-content">
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+                </svg> 
+                <span>{{ eleve.nom }}</span>
+            </p>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+                </svg>
+                <span>{{ eleve.prenom }}</span>
+            </p>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+                </svg> 
+                <span>{{ eleve.date_naissance }}</span>
+            </p>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+                </svg> 
+                <span>{{ eleve.adresse }}</span>
+            </p>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+                </svg> 
+                <span>{{ eleve.date_inscription }}</span>
+            </p>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+                </svg> 
+                <span>{{ eleve.genre }}</span>
+            </p>
         </div>
     </div>
 
     <div class="content">
         <h2>Mes scores</h2>
-        <table *ngIf="scores.length > 0">
-            <thead>
-                <tr>
-                    <th>Test</th>
-                    <th>Date</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let score of scores">
-                    <td>{{ score.theme }}</td>
-                    <td>{{ score.date_test }}</td>
-                    <td>{{ score.score }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p *ngIf="scores.length === 0">Aucun score disponible.</p>
+        <div class="table-container">
+            <table *ngIf="scores.length > 0">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Date</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let score of scores">
+                        <td>{{ score.theme }}</td>
+                        <td>{{ score.date_test }}</td>
+                        <td>{{ score.score }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="scores.length === 0">Aucun score disponible.</p>
+        </div>
     </div>
 </div>
-
-<button (click)="onLogout()" class="btn btn-danger">Se déconnecter</button>
-
-<!-- eleve/home-eleve/home-eleve.component.html -->
-<a routerLink="/eleve/avis">Voir plus</a>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 22 mars 2025 à 18:59
+-- Généré le : dim. 23 mars 2025 à 12:20
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -63,7 +63,7 @@ CREATE TABLE `autoecole` (
 --
 
 INSERT INTO `autoecole` (`id_autoecole`, `nom`, `adresse`, `telephone`, `identifiant`, `mot_de_passe`, `role`) VALUES
-(1, 'Autoecole Paris', '12 Rue de Paris, 75000 Paris', '0102030405', 'autoecole_paris', 'motdepasse1', 'autoecole'),
+(1, 'Autoecole pipi', '12 Rue de Paris, 75000 Paris', '0102030405', 'autoecole_paris', 'motdepasse1', 'autoecole'),
 (2, 'Autoecole Lyon', '25 Avenue de la République, 69000 Lyon', '0203040506', 'autoecole_lyon', 'motdepasse2', 'autoecole'),
 (3, 'Autoecole kakawanda', '44 Boulevard de la Libération, 13000 Marseille', '0304050607', 'autoecole_marseille', 'motdepasse3', 'autoecole'),
 (4, 'Autoecole Lille', '56 Rue de la Gare, 59000 Lille', '0405060708', 'autoecole_lille', 'motdepasse4', 'autoecole'),
@@ -122,7 +122,7 @@ INSERT INTO `eleve` (`id_eleve`, `nom`, `prenom`, `date_naissance`, `adresse`, `
 (1, 'THEVAKUMAR', 'Aathavan', '2005-09-16', 'Dugny, 93440', '2025-02-10', '2', 'B1', 'aathavan123', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 1, 'eleve'),
 (2, 'DUPONT', 'Marie', '1999-05-20', 'Paris, 75001', '2025-01-15', '56', 'B', 'marie1999', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Femme', 2, 'eleve'),
 (3, 'MARTIN', 'Pierre', '1998-11-12', 'Lyon, 69003', '2025-01-10', '1', 'C', 'pierre98', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 2, 'eleve'),
-(4, 'LEROY', 'Sophie', '2000-07-08', 'Marseille, 13008', '2025-02-05', '4', 'BE', 'sophie2000', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Femme', 3, 'eleve'),
+(4, 'asas', 'Sophie', '2000-07-08', 'Marseille, 13008', '2025-02-05', '4', 'BE', 'sophie2000', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Femme', 3, 'eleve'),
 (5, 'GARCIA', 'Julien', '2001-03-25', 'Lille, 59000', '2025-01-22', '5', 'D', 'julien01', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 4, 'eleve'),
 (6, 'PERRIN', 'Emma', '2004-12-10', 'Toulouse, 31000', '2025-02-08', '6', 'DE', 'emma04', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Femme', 5, 'eleve'),
 (7, 'MARCHAND', 'Lucas', '2002-04-14', 'Paris, 75002', '2025-01-17', '7', 'C1', 'lucas02', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 1, 'eleve'),
@@ -178,7 +178,8 @@ INSERT INTO `test` (`id_test`, `id_eleve`, `theme`, `date_test`, `score`) VALUES
 (1, 1, 'sss', '2025-03-18', 85),
 (2, 1, 'lol', '2025-03-18', 40),
 (4, 5, 'akkalaand', '2025-03-18', 5),
-(6, 1, 'zdzdz', '2025-03-22', 0);
+(6, 1, 'zdzdz', '2025-03-22', 0),
+(7, 1, 'zzz', '2025-03-22', 5);
 
 --
 -- Index pour les tables déchargées
@@ -280,7 +281,7 @@ ALTER TABLE `inscription`
 -- AUTO_INCREMENT pour la table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id_test` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_test` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées

@@ -62,9 +62,7 @@ export class EleveService {
     return this.http.put(`${this.baseUrl}eleves/update_score.php`, score);
   }
   
-// Service Angular
 deleteScore(id: number): Observable<any> {
-  const url = `${this.baseUrl}eleves/delete_score.php?id=${id}`;
-  return this.http.delete(url);
+  return this.http.delete(`${this.baseUrl}eleves/delete_score.php?id=${id}`);
 }
 }

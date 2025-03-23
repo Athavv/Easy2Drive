@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeEleveComponent } from './eleve/home-eleve/home-eleve.component';
 import { AvisComponent } from './eleve/avis/avis.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { SidebarEleveComponent } from './menu/sidebar-eleve/sidebar-eleve.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AccueilComponent } from './accueil/accueil.component';
     HomeEleveComponent,
     AvisComponent,
     AccueilComponent,
+    SidebarEleveComponent,
   ],
   imports: [
     BrowserModule,

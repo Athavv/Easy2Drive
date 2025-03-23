@@ -28,7 +28,7 @@ export const routes: Routes = [
   { path: 'infos-autoecole/:id', component: ElevesAutoecoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: 'infos-eleve/:id', component: ScoresEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: 'eleve/profil', component: HomeEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } },
-  { path: 'eleve/avis', component: AvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } }, // Route pour les avis
+  { path: 'eleve/avis', component: AvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } }, 
   { path: '**', redirectTo: '/Accueil' } 
 ];
 
