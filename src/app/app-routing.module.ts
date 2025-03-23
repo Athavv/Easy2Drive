@@ -30,7 +30,7 @@ export const routes: Routes = [
   { path: 'infos-eleve/:id', component: ScoresEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
   { path: 'eleve/profil', component: HomeEleveComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } },
   { path: 'eleve/avis', component: AvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'eleve' } }, 
-  { path: 'avis', component: AdminAvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, // Nouvelle route
+  { path: 'avis', component: AdminAvisComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } }, 
   { path: '**', redirectTo: '/Accueil' } 
 ];
 

@@ -3,7 +3,7 @@ import { AvisService } from '../../../services/avis.service';
 
 @Component({
   selector: 'app-admin-avis',
-  standalone:false,
+  standalone: false,
   templateUrl: './admin-avis.component.html',
   styleUrls: ['./admin-avis.component.css']
 })
@@ -17,12 +17,15 @@ export class AdminAvisComponent implements OnInit {
   }
 
   loadAvis(): void {
+    console.log('Début du chargement des avis...'); // <-- Debug 1
     this.avisService.getAllAvis().subscribe(
       (data: any) => {
+        console.log('Réponse API reçue :', data); // <-- Debug 2
         this.avisList = data.data;
+        console.log('Liste des avis après assignation :', this.avisList); // <-- Debug 3
       },
       (error) => {
-        console.error('Erreur de chargement des avis', error);
+        console.error('Erreur de chargement des avis :', error); // <-- Debug 4
       }
     );
   }
