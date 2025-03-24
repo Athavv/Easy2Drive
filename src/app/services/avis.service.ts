@@ -10,13 +10,10 @@ export class AvisService {
 
   constructor(private http: HttpClient) {}
 
-
-
-    // Dans avis.service.ts
   getAvis(statut: string = 'Publié'): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/view.php?statut=${statut}`);
   }
-  // Ajouter un nouvel avis
+
   addAvis(avis: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/insert.php`, avis);
   }
