@@ -65,4 +65,6 @@ export class EleveService {
 deleteScore(id: number): Observable<any> {
   return this.http.delete(`${this.baseUrl}eleves/delete_score.php?id=${id}`);
 }
+
+
 }

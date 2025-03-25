@@ -9,9 +9,12 @@ import { AutoecoleService } from '../../../services/autoecole.service';
 })
 export class ListAutoecolesComponent implements OnInit {
   autoecoles: any[] = [];
-  showAddAutoecoleForm: boolean = false; // Contrôle l'affichage du formulaire d'ajout
-  showEditModal: boolean = false; // Contrôle l'affichage de la modale de modification
-  selectedAutoecole: any = null; // Stocke l'auto-école sélectionnée pour la modification
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  totalPages: number = 0;
+  showAddAutoecoleForm: boolean = false;
+  showEditModal: boolean = false;
+  selectedAutoecole: any = null;
 
   constructor(private autoecoleService: AutoecoleService) {}
 
@@ -19,11 +22,12 @@ export class ListAutoecolesComponent implements OnInit {
     this.loadAutoecoles();
   }
 
-  // Charger la liste des auto-écoles
   loadAutoecoles(): void {
     this.autoecoleService.getAutoecoles().subscribe(
       (result: any) => {
         this.autoecoles = result.data;
+        this.totalPages = Math.ceil(this.autoecoles.length / this.itemsPerPage);
+        this.currentPage = 1;
       },
       (error) => {
         console.error("Erreur lors de la récupération des auto-écoles", error);
@@ -31,47 +35,52 @@ export class ListAutoecolesComponent implements OnInit {
     );
   }
 
-  // Ouvrir le formulaire d'ajout
+  getPaginatedAutoecoles(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.autoecoles.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
   openAddAutoecoleForm(): void {
     this.showAddAutoecoleForm = true;
   }
 
-  // Fermer le formulaire d'ajout
   closeAddAutoecoleForm(): void {
     this.showAddAutoecoleForm = false;
-    this.loadAutoecoles(); // Recharger la liste après l'ajout
+    this.loadAutoecoles();
   }
 
-  // Ouvrir la modale de modification
   openEditModal(autoecole: any): void {
-    this.selectedAutoecole = autoecole; // Stocke l'auto-école sélectionnée
-    this.showEditModal = true; // Affiche la modale
+    this.selectedAutoecole = autoecole;
+    this.showEditModal = true;
   }
 
-  // Fermer la modale de modification
   closeEditModal(): void {
-    this.showEditModal = false; // Cache la modale
-    this.selectedAutoecole = null; // Réinitialise l'auto-école sélectionnée
-    this.loadAutoecoles(); // Recharge la liste des auto-écoles
+    this.showEditModal = false;
+    this.selectedAutoecole = null;
+    this.loadAutoecoles();
   }
 
-  // Fermer toutes les modales
   closeModals(): void {
     this.closeAddAutoecoleForm();
     this.closeEditModal();
   }
 
-  // Supprimer une auto-école
   deleteAutoecole(autoecole: any): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer cette auto-école ?')) {
       this.autoecoleService.deleteAutoecole(autoecole.id_autoecole).subscribe(
         (response: any) => {
           if (response.success) {
-            // Filtrer la liste des auto-écoles pour supprimer l'auto-école supprimée
             this.autoecoles = this.autoecoles.filter((e: any) => e.id_autoecole !== autoecole.id_autoecole);
-            alert('Auto-école supprimée avec succès.');
-          } else {
-            alert('Erreur : ' + response.message);
+            this.totalPages = Math.ceil(this.autoecoles.length / this.itemsPerPage);
+            if (this.currentPage > this.totalPages) {
+              this.currentPage = Math.max(1, this.totalPages);
+            }
           }
         },
         (error) => {

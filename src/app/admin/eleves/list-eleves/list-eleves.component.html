@@ -3,26 +3,24 @@
   <div class="container">
     <h2>Liste des élèves</h2>
 
-    <!-- Bouton pour ouvrir le formulaire d'ajout -->
     <button class="btn btn-primary float-end mb-3" (click)="openAddEleveForm()">Ajouter un élève</button>
 
-    <!-- Tableau des élèves -->
     <table class="table table-striped">
       <thead class="bg-primary text-white">
         <tr>
           <th>#</th>
           <th>Nom</th>
-          <th>Prénom</th>
+          <th>NEPH</th>
           <th>Date de naissance</th>
           <th>Genre</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let eleve of eleves; let i = index;">
-          <td>{{ i + 1 }}</td>
-          <td>{{ eleve.nom }}</td>
-          <td>{{ eleve.prenom }}</td>
+        <tr *ngFor="let eleve of getPaginatedEleves(); let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+          <td>{{ eleve.nom }} {{ eleve.prenom }}</td>
+          <td>{{ eleve.npeh }}</td>
           <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
           <td>{{ eleve.genre }}</td>
           <td>
@@ -31,20 +29,30 @@
             <a [routerLink]="['/infos-eleve', eleve.id_eleve]" class="btn btn-info ms-2">Voir plus</a>
           </td>
         </tr>
+        <tr *ngIf="eleves.length === 0">
+          <td colspan="6" class="text-center">Aucun élève trouvé</td>
+        </tr>
       </tbody>
     </table>
 
-    <!-- Fond noir (affiché conditionnellement) -->
-    <div *ngIf="showAddEleveForm || showEditModal" class="modal-backdrop" (click)="closeModals()"></div>
+    <!-- Pagination -->
+    <nav *ngIf="totalPages > 1" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(currentPage - 1)">Précédent</a>
+        </li>
+        
+        <li *ngFor="let page of [].constructor(totalPages); let i = index" 
+            class="page-item" [class.active]="currentPage === i + 1">
+          <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        </li>
+        
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(currentPage + 1)">Suivant</a>
+        </li>
+      </ul>
+    </nav>
 
-    <!-- Formulaire d'ajout d'un élève (affiché conditionnellement) -->
-    <div *ngIf="showAddEleveForm" class="modal-content">
-      <app-add-eleves (closeForm)="closeAddEleveForm()"></app-add-eleves>
-    </div>
-
-    <!-- Formulaire de modification d'un élève (affiché conditionnellement) -->
-    <div *ngIf="showEditModal" class="modal-content">
-      <app-edit-eleves [eleve]="selectedEleve" (closeForm)="closeEditModal()"></app-edit-eleves>
-    </div>
+    <!-- Modales... -->
   </div>
 </div>

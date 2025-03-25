@@ -9,9 +9,12 @@ import { EleveService } from '../../../services/eleve.service';
 })
 export class ListElevesComponent implements OnInit {
   eleves: any[] = [];
-  showAddEleveForm: boolean = false; // Contrôle l'affichage du formulaire d'ajout
-  showEditModal: boolean = false; // Contrôle l'affichage de la modale de modification
-  selectedEleve: any = null; // Stocke l'élève sélectionné pour la modification
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  totalPages: number = 0;
+  showAddEleveForm: boolean = false;
+  showEditModal: boolean = false;
+  selectedEleve: any = null;
 
   constructor(private eleveService: EleveService) {}
 
@@ -19,11 +22,11 @@ export class ListElevesComponent implements OnInit {
     this.loadEleves();
   }
 
-  // Charger la liste des élèves
   loadEleves(): void {
     this.eleveService.getEleves().subscribe(
       (result: any) => {
         this.eleves = result.data;
+        this.totalPages = Math.ceil(this.eleves.length / this.itemsPerPage);
       },
       (error) => {
         console.error("Erreur lors de la récupération des élèves", error);
@@ -31,47 +34,52 @@ export class ListElevesComponent implements OnInit {
     );
   }
 
-  // Ouvrir le formulaire d'ajout
+  getPaginatedEleves(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.eleves.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
   openAddEleveForm(): void {
     this.showAddEleveForm = true;
   }
 
-  // Fermer le formulaire d'ajout
   closeAddEleveForm(): void {
     this.showAddEleveForm = false;
-    this.loadEleves(); // Recharger la liste après l'ajout
+    this.loadEleves();
   }
 
-  // Ouvrir la modale de modification
   openEditModal(eleve: any): void {
-    this.selectedEleve = eleve; // Stocke l'élève sélectionné
-    this.showEditModal = true; // Affiche la modale
+    this.selectedEleve = eleve;
+    this.showEditModal = true;
   }
 
-  // Fermer la modale de modification
   closeEditModal(): void {
-    this.showEditModal = false; // Cache la modale
-    this.selectedEleve = null; // Réinitialise l'élève sélectionné
-    this.loadEleves(); // Recharge la liste des élèves
+    this.showEditModal = false;
+    this.selectedEleve = null;
+    this.loadEleves();
   }
 
-  // Fermer toutes les modales
   closeModals(): void {
     this.closeAddEleveForm();
     this.closeEditModal();
   }
 
-  // Supprimer un élève
   deleteEleve(eleve: any): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer cet élève ?')) {
       this.eleveService.deleteEleve(eleve.id_eleve).subscribe(
         (response: any) => {
           if (response.success) {
-            // Filtrer la liste des élèves pour supprimer l'élève supprimé
             this.eleves = this.eleves.filter((e: any) => e.id_eleve !== eleve.id_eleve);
-            alert('Élève supprimé avec succès.');
-          } else {
-            alert('Erreur : ' + response.message);
+            this.totalPages = Math.ceil(this.eleves.length / this.itemsPerPage);
+            if (this.currentPage > this.totalPages) {
+              this.currentPage = Math.max(1, this.totalPages);
+            }
           }
         },
         (error) => {

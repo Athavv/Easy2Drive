@@ -9,6 +9,9 @@ import { AvisService } from '../../../services/avis.service';
 })
 export class AdminAvisComponent implements OnInit {
   avisList: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  totalPages: number = 0;
 
   constructor(private avisService: AvisService) {}
 
@@ -17,17 +20,26 @@ export class AdminAvisComponent implements OnInit {
   }
 
   loadAvis(): void {
-    console.log('Début du chargement des avis...'); // <-- Debug 1
     this.avisService.getAllAvis().subscribe(
       (data: any) => {
-        console.log('Réponse API reçue :', data); // <-- Debug 2
         this.avisList = data.data;
-        console.log('Liste des avis après assignation :', this.avisList); // <-- Debug 3
+        this.totalPages = Math.ceil(this.avisList.length / this.itemsPerPage);
       },
       (error) => {
-        console.error('Erreur de chargement des avis :', error); // <-- Debug 4
+        console.error('Erreur de chargement des avis :', error);
       }
     );
+  }
+
+  getPaginatedAvis(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.avisList.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
   }
 
   updateStatut(avis: any): void {
@@ -46,6 +58,10 @@ export class AdminAvisComponent implements OnInit {
       this.avisService.deleteAvis(avis.id_avis).subscribe(
         (response) => {
           this.avisList = this.avisList.filter(a => a.id_avis !== avis.id_avis);
+          this.totalPages = Math.ceil(this.avisList.length / this.itemsPerPage);
+          if (this.currentPage > this.totalPages) {
+            this.currentPage = Math.max(1, this.totalPages);
+          }
         },
         (error) => {
           console.error('Erreur de suppression', error);

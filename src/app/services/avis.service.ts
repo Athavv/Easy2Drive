@@ -26,7 +26,10 @@ export class AvisService {
     return this.http.delete(`${this.apiUrl}/eleves/delete.php?id=${avisId}&id_eleve=${eleveId}`);
   }
 
-  // Méthodes admin (conservées mais non utilisées par l'élève)
+  getAvisByEleve(eleveId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/admin/avis-by-eleve.php?id_eleve=${eleveId}`);
+  }
+
   getAllAvis(): Observable<any> {
     return this.http.get(`${this.apiUrl}/admin/admin-view.php`);
   }
@@ -37,5 +40,9 @@ export class AvisService {
 
   deleteAvis(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/admin/delete.php?id=${id}`);
+  }
+  
+  getAllAvisByAutoecole(autoecoleId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/admin/avis-by-autoecole.php?id_autoecole=${autoecoleId}`);
   }
 }

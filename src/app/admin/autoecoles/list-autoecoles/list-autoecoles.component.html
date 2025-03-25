@@ -3,10 +3,8 @@
   <div class="container">
     <h2>Liste des auto-écoles</h2>
 
-    <!-- Bouton pour ouvrir le formulaire d'ajout -->
     <button class="btn btn-primary float-end mb-3" (click)="openAddAutoecoleForm()">Ajouter une auto-école</button>
 
-    <!-- Tableau des auto-écoles -->
     <table class="table table-striped">
       <thead class="bg-primary text-white">
         <tr>
@@ -18,8 +16,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let autoecole of autoecoles; let i = index;">
-          <td>{{ i + 1 }}</td>
+        <tr *ngFor="let autoecole of getPaginatedAutoecoles(); let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
           <td>{{ autoecole.nom }}</td>
           <td>{{ autoecole.adresse }}</td>
           <td>{{ autoecole.telephone }}</td>
@@ -29,20 +27,30 @@
             <a [routerLink]="['/infos-autoecole', autoecole.id_autoecole]" class="btn btn-info ms-2">Voir plus</a>
           </td>
         </tr>
+        <tr *ngIf="autoecoles.length === 0">
+          <td colspan="5" class="text-center">Aucune auto-école trouvée</td>
+        </tr>
       </tbody>
     </table>
 
-    <!-- Fond noir (affiché conditionnellement) -->
-    <div *ngIf="showAddAutoecoleForm || showEditModal" class="modal-backdrop" (click)="closeModals()"></div>
+    <!-- Pagination -->
+    <nav *ngIf="totalPages > 1" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(currentPage - 1)">Précédent</a>
+        </li>
+        
+        <li *ngFor="let page of [].constructor(totalPages); let i = index" 
+            class="page-item" [class.active]="currentPage === i + 1">
+          <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        </li>
+        
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(currentPage + 1)">Suivant</a>
+        </li>
+      </ul>
+    </nav>
 
-    <!-- Formulaire d'ajout d'une auto-école (affiché conditionnellement) -->
-    <div *ngIf="showAddAutoecoleForm" class="modal-content">
-      <app-add-autoecole (closeForm)="closeAddAutoecoleForm()"></app-add-autoecole>
-    </div>
-
-    <!-- Formulaire de modification d'une auto-école (affiché conditionnellement) -->
-    <div *ngIf="showEditModal" class="modal-content">
-      <app-edit-autoecole [autoecole]="selectedAutoecole" (closeForm)="closeEditModal()"></app-edit-autoecole>
-    </div>
+    <!-- Modales... -->
   </div>
 </div>
