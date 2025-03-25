@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 23 mars 2025 à 12:20
+-- Généré le : mer. 26 mars 2025 à 00:30
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -89,8 +89,24 @@ CREATE TABLE `avis` (
 --
 
 INSERT INTO `avis` (`id_avis`, `id_eleve`, `commentaire`, `date_commentaire`, `date_depot`, `statut`) VALUES
-(1, 1, 'seffsefesfsef', '2025-03-22 17:36:34', '2025-03-22', 'En attente'),
-(2, 1, 'efsefes fesfsf esf', '2025-03-22 17:36:34', '2025-03-22', 'En attente');
+(1, 1, 'seffsefesfsef', '2025-03-22 17:36:34', '2025-03-22', 'Publié'),
+(3, 1, 'Très bon auto-école !', '2025-03-23 12:33:52', NULL, 'Refusé'),
+(4, 1, 'dzdz', '2025-03-23 12:33:56', NULL, 'En attente'),
+(5, 1, 'dzdz', '2025-03-23 12:33:56', NULL, 'En attente'),
+(6, 1, 'dzddcsqcwcws', '2025-03-23 12:34:34', NULL, 'En attente'),
+(7, 1, 'test', '2025-03-23 12:35:35', NULL, 'En attente'),
+(8, 1, 'Très DZDZ caca-école !', '2025-03-23 12:54:06', NULL, 'En attente'),
+(9, 1, 'dzdz', '2025-03-23 12:54:50', NULL, 'En attente'),
+(11, 1, 'dzdzzqdzqzdq', '2025-03-23 12:55:39', NULL, 'En attente'),
+(12, 1, 'sasaa', '2025-03-23 12:55:46', NULL, 'En attente'),
+(13, 1, 'lol caca lol', '2025-03-23 12:57:00', NULL, 'En attente'),
+(14, 1, 'Trèfefes DZDZ caca-école !', '2025-03-23 13:10:51', NULL, 'En attente'),
+(15, 2, 'dzdz DZDZ caca-école !', '2025-03-23 13:11:04', NULL, 'Publié'),
+(16, 1, 'zdzd', '2025-03-23 13:16:12', NULL, 'En attente'),
+(17, 1, 'yes', '2025-03-23 13:16:28', NULL, 'En attente'),
+(18, 2, 'dalut c mari', '2025-03-23 13:19:13', NULL, 'Publié'),
+(21, 1, 'zddzssss', '2025-03-25 21:32:22', NULL, 'Publié'),
+(22, 1, 'dzdz', '2025-03-26 00:07:30', NULL, 'En attente');
 
 -- --------------------------------------------------------
 
@@ -128,33 +144,8 @@ INSERT INTO `eleve` (`id_eleve`, `nom`, `prenom`, `date_naissance`, `adresse`, `
 (7, 'MARCHAND', 'Lucas', '2002-04-14', 'Paris, 75002', '2025-01-17', '7', 'C1', 'lucas02', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 1, 'eleve'),
 (8, 'RODRIGUEZ', 'Isabella', '2003-06-30', 'Marseille, 13009', '2025-02-20', '8', 'D1', 'isabella03', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Femme', 3, 'eleve'),
 (9, 'FERNANDES', 'Carlos', '2002-02-28', 'Lyon, 69001', '2025-01-18', '9', 'C1E', 'carlos02', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 2, 'eleve'),
-(10, 'Doe', 'John', '1995-06-15', '123 Rue de Paris', '2025-03-13', '15', 'B1', 'johndoe123', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 1, 'eleve');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `examenblanc`
---
-
-CREATE TABLE `examenblanc` (
-  `id_examen` int(11) NOT NULL,
-  `id_eleve` int(11) DEFAULT NULL,
-  `date_examen` date DEFAULT NULL,
-  `score` int(11) DEFAULT NULL CHECK (`score` between 0 and 100)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `inscription`
---
-
-CREATE TABLE `inscription` (
-  `id_inscription` int(11) NOT NULL,
-  `id_eleve` int(11) DEFAULT NULL,
-  `id_autoecole` int(11) DEFAULT NULL,
-  `date_inscription` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(10, 'Doe', 'John', '1995-06-15', '123 Rue de Paris', '2025-03-13', '15', 'B1', 'johndoe123', '$2y$10$k0cvpPBEgujvC0AqE3IJXuvUX5Z77ujPy4yvP7UxEH150j4w/NuTa', 'Homme', 1, 'eleve'),
+(35, 'DOE', 'JOHN', '2010-10-10', '2 allée Jean Lurçat', '2025-03-25', '68495', NULL, 'LUC', '$2y$10$vqbM4EtKl.YSyRghKSG9mecfbch0yiyocqKAW2VlCnn8CZvhVT4lu', 'Homme', 5, 'eleve');
 
 -- --------------------------------------------------------
 
@@ -175,11 +166,18 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`id_test`, `id_eleve`, `theme`, `date_test`, `score`) VALUES
-(1, 1, 'sss', '2025-03-18', 85),
+(1, 1, 'dzdzd', '2025-03-18', 85),
 (2, 1, 'lol', '2025-03-18', 40),
 (4, 5, 'akkalaand', '2025-03-18', 5),
 (6, 1, 'zdzdz', '2025-03-22', 0),
-(7, 1, 'zzz', '2025-03-22', 5);
+(7, 1, 'zzz', '2025-03-22', 5),
+(8, 1, 'akkalaand', '2025-03-25', 10),
+(9, 1, 'ssa', '2025-03-25', 5),
+(10, 1, ',oà', '2025-03-25', 74),
+(11, 1, 'dzdzqdq', '2025-03-25', 2),
+(12, 1, 'lij', '2025-03-25', 11),
+(13, 1, 'bnbn', '2025-03-25', 10),
+(14, 1, 'nom', '2025-03-25', 20);
 
 --
 -- Index pour les tables déchargées
@@ -216,21 +214,6 @@ ALTER TABLE `eleve`
   ADD KEY `id_autoecole` (`id_autoecole`);
 
 --
--- Index pour la table `examenblanc`
---
-ALTER TABLE `examenblanc`
-  ADD PRIMARY KEY (`id_examen`),
-  ADD KEY `id_eleve` (`id_eleve`);
-
---
--- Index pour la table `inscription`
---
-ALTER TABLE `inscription`
-  ADD PRIMARY KEY (`id_inscription`),
-  ADD KEY `id_eleve` (`id_eleve`),
-  ADD KEY `id_autoecole` (`id_autoecole`);
-
---
 -- Index pour la table `test`
 --
 ALTER TABLE `test`
@@ -257,31 +240,19 @@ ALTER TABLE `autoecole`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `eleve`
 --
 ALTER TABLE `eleve`
-  MODIFY `id_eleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT pour la table `examenblanc`
---
-ALTER TABLE `examenblanc`
-  MODIFY `id_examen` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `inscription`
---
-ALTER TABLE `inscription`
-  MODIFY `id_inscription` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_eleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT pour la table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id_test` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_test` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Contraintes pour les tables déchargées
@@ -298,19 +269,6 @@ ALTER TABLE `avis`
 --
 ALTER TABLE `eleve`
   ADD CONSTRAINT `eleve_ibfk_1` FOREIGN KEY (`id_autoecole`) REFERENCES `autoecole` (`id_autoecole`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `examenblanc`
---
-ALTER TABLE `examenblanc`
-  ADD CONSTRAINT `examenblanc_ibfk_1` FOREIGN KEY (`id_eleve`) REFERENCES `eleve` (`id_eleve`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `inscription`
---
-ALTER TABLE `inscription`
-  ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`id_eleve`) REFERENCES `eleve` (`id_eleve`) ON DELETE CASCADE,
-  ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`id_autoecole`) REFERENCES `autoecole` (`id_autoecole`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `test`

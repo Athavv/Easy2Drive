@@ -8,14 +8,16 @@
   background: linear-gradient(180deg, #7B61FF, #A085FF);
   color: rgb(0, 0, 0);
   padding: 20px 0;
-  width: 1520px;
+  width: 100vw;
   position: relative;
-  left: calc(-50vw + 50%);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .main-content {
   display: flex;
   flex: 1;
+  margin-top: 20px;
 }
 
 .ok {
@@ -25,7 +27,7 @@
 }
 
 .info {
-  margin-left: 130px;
+  margin-left: 250px;
   padding: 20px;
   width: calc(100% - 250px);
 }
@@ -33,20 +35,20 @@
 .content-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin: 40px 0;
+  gap: 40px;
 }
 
 .description {
-  max-width: 800px;
   flex: 1;
-  margin-right: 40px;
+  max-width: 600px;
 }
 
 .description-image img {
-  width: 300px;
-  height: 300px;
-  max-width: 500px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -60,28 +62,82 @@
   font-weight: bold;
   cursor: pointer;
   margin-top: 20px;
+  transition: background-color 0.3s;
 }
 
+.add-avis-btn:hover {
+  background-color: #6a50e8;
+}
+
+/* Liste des avis améliorée */
 .avis-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
   margin-top: 40px;
   width: 100%;
 }
 
 .avis-card {
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
   background-color: #C6D9D7;
-  width: calc((100% - 40px) / 3); /* 3 cartes par ligne avec espacement */
-  font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 0 0 calc((100% - 40px) / 3); /* Empêche les cartes de s'étirer */
-  box-sizing: border-box; /* Inclut padding dans le calcul de la largeur */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* Modal styles - Updated */
+.date-avis {
+  color: #555;
+  font-size: 0.9em;
+}
+
+.commentaire {
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+.avis-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Boutons avec les couleurs originales */
+.modify {
+  background-color: #7B61FF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.modify:hover {
+  background-color: #6a50e8;
+}
+
+.sup {
+  background-color: #D98B8B;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.sup:hover {
+  background-color: #c77a7a;
+}
+
+/* Modales avec couleurs originales */
 .modal {
   position: fixed;
   top: 0;
@@ -104,50 +160,25 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.modal-content h2 {
-  color: #000;
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
-.modal-subtitle {
-  color: #666;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-
-.separator {
-  height: 1px;
-  background-color: #eee;
-  margin: 15px 0;
-}
-
-.comment-prompt {
-  color: #333;
-  font-size: 18px;
-  margin-bottom: 15px;
-  font-weight: normal;
-}
-
 .modal-content textarea {
   width: 100%;
   min-height: 150px;
   padding: 15px;
   border: 2px solid #000000;
   border-radius: 8px;
+  margin: 15px 0;
+  resize: vertical;
   font-family: inherit;
   font-size: 16px;
-  margin-bottom: 20px;
-  resize: vertical;
 }
 
-.modal-actions {
+.modal-buttons {
   display: flex;
   justify-content: flex-end;
+  gap: 15px;
 }
 
-.submit-btn {
+.submit-btn, .close-btn, .down, .back {
   background-color: #7B61FF;
   color: white;
   border: none;
@@ -155,132 +186,49 @@
   border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 16px;
   transition: background-color 0.3s;
-  margin-right: 80px;
 }
 
-.modify{
-  background-color: #7B61FF;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 13px;
-
-}
-.sup{
-  background-color: #D98B8B;
-  color: white;
-  border: none;
-  padding:  10px 15px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 13px;
-
-}
-
-.down{
-  background-color: #7B61FF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 16px;
-  
-
-}
-.back{
-  background-color: #7B61FF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 16px;
-
-}
-.submit-btn:hover {
-  background-color: #6a50e8;
-}
-.close-btn{
-  background-color: #7B61FF;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  margin-right: 100px;
-}
-.close-btn:hover{
+.submit-btn:hover, .close-btn:hover, .down:hover, .back:hover {
   background-color: #6a50e8;
 }
 
+/* Responsive */
+@media (max-width: 1200px) {
+  .info, .ok {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+  }
+}
 
-
-
-/* Responsive adjustments */
 @media (max-width: 992px) {
-  .info {
-    margin-left: 60px;
-    width: calc(100% - 60px);
-  }
-}
-
-@media (max-width: 768px) {
-  .header-section {
-    padding-top: 60px;
-  }
-  
-  .info {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-
   .content-wrapper {
     flex-direction: column;
   }
-
-  .description-image {
+  
+  .description-image img {
     margin-top: 20px;
-    align-self: center;
   }
-.ok{
-  margin-left: 100px;
-}
-}
-@media (max-width: 600px) {
-  .modal-content {
-    padding: 20px;
-    width: 95%;
+  
+  .avis-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
-}
-
-@media (max-width: 992px) {
-  .avis-card {
-      width: calc((100% - 20px) / 2); /* 2 cartes par ligne sur tablettes */
-      flex: 0 0 calc((100% - 20px) / 2);
-  }
-
 }
 
 @media (max-width: 768px) {
-  .avis-card {
-      width: 100%; /* 1 carte par ligne sur mobiles */
-      flex: 0 0 100%;
-  }
-
-  .avis-container{
+  .info, .ok {
+    margin-left: 0;
     width: 100%;
+    padding: 20px;
+  }
+  
+  .header-section {
+    left: 0;
+    transform: none;
+    width: 100%;
+  }
+  
+  .avis-container {
+    grid-template-columns: 1fr;
   }
 }

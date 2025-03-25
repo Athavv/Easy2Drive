@@ -9,7 +9,7 @@
     <div class="main-content">
       <app-sidebar-eleve></app-sidebar-eleve>
       
-      <div class="info ">
+      <div class="info">
         <div class="content-wrapper">
           <div class="description">
             <h2>Avis apprécié par des milliers d'utilisateurs</h2>
@@ -20,43 +20,45 @@
             <img src="/avis_eleve.png" alt="Élèves heureux">
           </div>
         </div>
-            <!-- Liste des avis -->
-            <div class="avis-container">
-                <div *ngFor="let avis of avisList" class="avis-card">
-                    <p><strong>{{ avis.nom }} {{ avis.prenom }}</strong></p>
-                    <p>Posté le : {{ avis.date_commentaire | date: 'dd/MM/yyyy HH:mm' }}</p>
-                    <p>{{ avis.commentaire }}</p>
-                    <!-- Boutons seulement pour l'élève propriétaire -->
-                    <div *ngIf="userId === avis.id_eleve" class="avis-actions">
-                        <button class="modify" (click)="openEditModal(avis)">Modifier</button>
-                        <button class="sup" (click)="deleteAvis(avis.id_avis)">Supprimer</button>
-                    </div>
-                </div>
-            </div>
-          
-            <!-- Pop-up pour ajouter un avis -->
-            <div *ngIf="showAddAvisModal" class="modal">
-                <div class="modal-content">
-                    <h3>Donnez votre avis</h3>
-                    <textarea [(ngModel)]="newAvis.commentaire" placeholder="Votre avis..."></textarea>
-                    <div class="modal-buttons">
-                        <button class="submit-btn" (click)="submitAvis()">Soumettre</button>
-                        <button class="close-btn" (click)="closeAddAvisModal()">Fermer</button>
-                    </div>
-                </div>
-            </div>
-          
-            <!-- Pop-up pour modifier un avis -->
-            <div *ngIf="showEditModal" class="modal">
-                <div class="modal-content">
-                    <h3>Modifier l'avis</h3>
-                    <textarea [(ngModel)]="selectedAvis.commentaire"></textarea>
-                    <div class="modal-buttons">
-                        <button class="down" (click)="updateAvis()">Enregistrer</button>
-                        <button class="back" (click)="closeEditModal()">Annuler</button>
-                    </div>
+        
+        <!-- Liste des avis - Version améliorée avec meilleur espacement -->
+        <div class="avis-container">
+            <div *ngFor="let avis of avisList" class="avis-card">
+                <p><strong>{{ avis.nom }} {{ avis.prenom }}</strong></p>
+                <p class="date-avis">Posté le : {{ avis.date_commentaire | date: 'dd/MM/yyyy HH:mm' }}</p>
+                <p class="commentaire">{{ avis.commentaire }}</p>
+                
+                <!-- Boutons seulement pour l'élève propriétaire -->
+                <div *ngIf="userId === avis.id_eleve" class="avis-actions">
+                    <button class="modify" (click)="openEditModal(avis)">Modifier</button>
+                    <button class="sup" (click)="deleteAvis(avis.id_avis)">Supprimer</button>
                 </div>
             </div>
         </div>
+        
+        <!-- Pop-up pour ajouter un avis -->
+        <div *ngIf="showAddAvisModal" class="modal">
+            <div class="modal-content">
+                <h3>Donnez votre avis</h3>
+                <textarea [(ngModel)]="newAvis.commentaire" placeholder="Votre avis..."></textarea>
+                <div class="modal-buttons">
+                    <button class="submit-btn" (click)="submitAvis()">Soumettre</button>
+                    <button class="close-btn" (click)="closeAddAvisModal()">Fermer</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pop-up pour modifier un avis -->
+        <div *ngIf="showEditModal" class="modal">
+            <div class="modal-content">
+                <h3>Modifier l'avis</h3>
+                <textarea [(ngModel)]="selectedAvis.commentaire"></textarea>
+                <div class="modal-buttons">
+                    <button class="down" (click)="updateAvis()">Enregistrer</button>
+                    <button class="back" (click)="closeEditModal()">Annuler</button>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
 </div>
