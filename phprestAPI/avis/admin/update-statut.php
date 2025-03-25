@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-require_once '../db_connect.php';
+require_once '../../db_connect.php';
 
 $database = new Operations();
 $conn = $database->dbConnection();

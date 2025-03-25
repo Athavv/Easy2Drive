@@ -8,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-require_once '../db_connect.php';
+require_once '../../db_connect.php';
 $database = new Operations();
 $pdo = $database->dbConnection();
 
 try {
-    // Requête SQL pour récupérer uniquement les avis "Publié"
-    $query = "SELECT a.id_avis, a.commentaire, a.date_commentaire, e.nom, e.prenom 
+    // Requête modifiée pour inclure id_eleve
+    $query = "SELECT a.id_avis, a.id_eleve, a.commentaire, a.date_commentaire, e.nom, e.prenom 
               FROM avis a 
               JOIN eleve e ON a.id_eleve = e.id_eleve 
               WHERE a.statut = 'Publié' 

@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-require '../db_connect.php';
+require '../../db_connect.php';
 $database = new Operations();
 $conn = $database->dbConnection();
 
