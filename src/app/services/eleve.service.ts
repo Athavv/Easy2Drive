@@ -10,7 +10,7 @@ import { Score } from '../modules/score';
 export class EleveService {
 
   // URL de base de l'API PHP
-  private baseUrl: string = 'https://easy2drive.free.nf/phprestAPI/admin/'; 
+  private baseUrl: string = 'http://localhost/phprestAPI/admin/'; 
 
   constructor(private http: HttpClient) {}
 
@@ -62,9 +62,9 @@ export class EleveService {
     return this.http.put(`${this.baseUrl}eleves/update_score.php`, score);
   }
   
-deleteScore(id: number): Observable<any> {
-  return this.http.delete(`${this.baseUrl}eleves/delete_score.php?id=${id}`);
-}
+  deleteScore(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}eleves/delete_score.php?id=${id}`);
+  }
 
 
 }

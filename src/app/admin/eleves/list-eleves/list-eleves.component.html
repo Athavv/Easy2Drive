@@ -1,58 +1,67 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Jersey+20&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<div class="list">
 <div class="app-container">
   <app-sidebar></app-sidebar>
   <div class="container">
-    <h2>Liste des élèves</h2>
+    <h2 class="mt-5">Gestion des élèves</h2>
 
-    <button class="btn btn-primary float-end mb-3" (click)="openAddEleveForm()">Ajouter un élève</button>
+    <!-- Bouton pour ouvrir le formulaire -->
+    <button class="btn ajout float-end me-5 mb-3 " (click)="openAddEleveForm()">Ajouter un élève</button>
 
-    <table class="table table-striped">
-      <thead class="bg-primary text-white">
+    <!-- Tableau des élèves -->
+    <table class="table table-striped ">
+      <thead class="ligne p-5 des">
         <tr>
-          <th>#</th>
-          <th>Nom</th>
-          <th>NEPH</th>
-          <th>Date de naissance</th>
-          <th>Genre</th>
-          <th>Actions</th>
+          <th class="col">#</th>
+          <th class="col">Nom</th>
+          <th class="col">Prénom</th>
+          <th class="col">Date de naissance</th>
+          <th class="col">Genre</th>
+          <th class="col-4 text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let eleve of getPaginatedEleves(); let i = index">
-          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
-          <td>{{ eleve.nom }} {{ eleve.prenom }}</td>
-          <td>{{ eleve.npeh }}</td>
+        <tr *ngFor="let eleve of eleves; let i = index;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ eleve.nom }}</td>
+          <td>{{ eleve.prenom }}</td>
           <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
           <td>{{ eleve.genre }}</td>
-          <td>
-            <button (click)="openEditModal(eleve)" class="btn btn-success">Modifier</button>
-            <button (click)="deleteEleve(eleve)" class="btn btn-danger ms-2">Supprimer</button>
-            <a [routerLink]="['/infos-eleve', eleve.id_eleve]" class="btn btn-info ms-2">Voir plus</a>
+        
+          <td class="text-center ">
+            <a [routerLink]="['/infos-eleve', eleve.id_eleve]" class="btn voir_plus">
+              <img src="/voir_plus.png" class="icon">  
+            </a>
+            <button (click)="openEditModal(eleve)" class="btn modif">
+              <img src="/modifier.png" class="icon" alt="Modifier">
+            </button>
+            <button (click)="deleteEleve(eleve)" class="btn supp">
+              <img src="/supp.png" class="icon" alt="Supprimer">
+            </button>
           </td>
         </tr>
-        <tr *ngIf="eleves.length === 0">
-          <td colspan="6" class="text-center">Aucun élève trouvé</td>
+        <tr id="foot">
+          <th colspan="10"></th>
         </tr>
       </tbody>
     </table>
 
-    <!-- Pagination -->
-    <nav *ngIf="totalPages > 1" class="mt-3">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link" (click)="changePage(currentPage - 1)">Précédent</a>
-        </li>
-        
-        <li *ngFor="let page of [].constructor(totalPages); let i = index" 
-            class="page-item" [class.active]="currentPage === i + 1">
-          <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
-        </li>
-        
-        <li class="page-item" [class.disabled]="currentPage === totalPages">
-          <a class="page-link" (click)="changePage(currentPage + 1)">Suivant</a>
-        </li>
-      </ul>
-    </nav>
+    <!-- Fond noir (affiché conditionnellement) -->
+    <div *ngIf="showAddEleveForm || showEditModal" class="modal-backdrop" (click)="closeModals()"></div>
 
-    <!-- Modales... -->
+    <!-- Formulaire d'ajout d'un élève -->
+    <div *ngIf="showAddEleveForm" class="modal-content">
+      <app-add-eleves (closeForm)="closeAddEleveForm()"></app-add-eleves>
+    </div>
+
+    <!-- Formulaire de modification d'un élève -->
+    <div *ngIf="showEditModal" class="modal-content">
+      <app-edit-eleves [eleve]="selectedEleve" (closeForm)="closeEditModal()"></app-edit-eleves>
+    </div>
   </div>
+</div>
 </div>

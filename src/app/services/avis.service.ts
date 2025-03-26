@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AvisService {
-  private apiUrl = 'https://easy2drive.free.nf/phprestAPI/avis';
+  private apiUrl = 'http://localhost/phprestAPI/avis';
 
   constructor(private http: HttpClient) {}
 

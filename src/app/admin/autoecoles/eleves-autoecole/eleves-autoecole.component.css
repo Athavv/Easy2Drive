@@ -1,10 +1,151 @@
 .app-container {
-    display: flex;
-    min-height: 100vh; 
-  }
-  
-  .main-content {
-    flex-grow: 1; 
-    padding: 20px; 
-    overflow-y: auto;
-  }
+  display: flex;
+  min-height: 100vh; 
+}
+
+.main-content {
+  flex-grow: 1; 
+  padding: 20px; 
+  overflow-y: auto;
+}
+
+.info {
+  color: white;
+}
+
+.infos {
+  background-color: #5B44F2;
+}
+.icon {
+  width: 40px;
+  margin-right: 10px;
+}
+/* Styles du tableau élèves - harmonisés avec l'exemple */
+.titre {
+background-color: #6D81F2;
+color: black;
+}
+
+.table {
+width: 100%;
+border-collapse: separate;
+border-spacing: 0 10px;
+}
+
+.table tbody tr {
+background-color: white;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table td, .table th {
+padding: 15px;
+vertical-align: middle;
+}
+
+/* Style du bouton Voir plus */
+.voir-plus {
+padding: 0;
+border: none;
+background: transparent;
+}
+
+.voir-plus-icon {
+width: 40px;
+background-color: #C7D9D6;
+padding: 6px;
+border-radius: 50%;
+}
+
+.actions-cell {
+display: flex;
+justify-content: center;
+gap: 8px;
+}
+
+/* Adaptation responsive */
+@media (max-width: 768px) {
+.table td, .table th {
+  padding: 10px 5px;
+  font-size: 0.9rem;
+}
+
+.voir-plus-icon {
+  width: 35px;
+  padding: 5px;
+}
+
+.modif-icon {
+  width: 35px;
+  padding: 5px;
+}
+
+.supp-icon {
+  width: 35px;
+  padding: 5px;
+}
+}
+
+.modif-icon {
+width: 40px;
+background-color: #C7D9D6;
+padding: 6px;
+border-radius: 50%;
+}
+
+.supp-icon {
+width: 40px;
+background-color: #D98B8B;
+padding: 6px;
+border-radius: 50%;
+}
+
+/* Styles des icônes d'action */
+.action-icon {
+width: 40px;
+height: 40px;
+padding: 8px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: transform 0.2s;
+}
+
+.action-icon:hover {
+transform: scale(1.1);
+}
+
+.voir-plus {
+background-color: #C7D9D6;
+}
+
+.modif {
+background-color: #C7D9D6;
+}
+
+.supp {
+background-color: #D98B8B;
+}
+
+/* Suppression des styles inutiles */
+.btn-sm.p-0 {
+line-height: 1;
+}
+
+/* Ajustement responsive */
+@media (max-width: 768px) {
+.action-icon {
+  width: 35px;
+  height: 35px;
+  padding: 6px;
+}
+
+.gap-2 {
+  gap: 6px !important;
+}
+}
+
+.ajout {
+background-color: #5B44F2;
+color:white;
+}

@@ -1,55 +1,61 @@
-<div class="container">
-    <div class="text-center"><h1>AJOUTER UNE NOUVELLE AUTO-ÉCOLE</h1></div>
-    <div style="width:50%; margin:auto">
-      <form [formGroup]="addForm" novalidate class="form" (ngSubmit)="onSubmit()">
-  
-        <!-- Nom -->
-        <div class="row">
-          <div class="col-md-6">Nom</div>
-          <div class="col-md-6">
-            <input class="form-control" type="text" name="nom" formControlName="nom" required>
+<div class="modal-content p-4">
+  <h2 class="text-center">Formulaire auto-école</h2>
+  <div class="card shadow p-4">
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="w-100">
+      <div class="row">
+        <!-- Colonne de gauche - Champs principaux -->
+        <div class="col-md-7 pe-4">
+          <!-- Prénom (pleine largeur) -->
+
+          <!-- Nom (pleine largeur) -->
+          <div class="row mb-3">
+            <div class="col-12">
+              <label class="form-label">Nom</label>
+              <input type="text" class="form-control" formControlName="nom" placeholder="Nom" required>
+            </div>
+          </div>
+
+          <!-- Adresse (pleine largeur) -->
+          <div class="row mb-3">
+            <div class="col-12">
+              <label class="form-label">Adresse</label>
+              <input type="text" class="form-control" formControlName="adresse" placeholder="Adresse" required>
+            </div>
+          </div>
+
+          <!-- Téléphone (pleine largeur) -->
+          <div class="row mb-3">
+            <div class="col-12">
+              <label class="form-label">Téléphone</label>
+              <input type="text" class="form-control" formControlName="telephone" placeholder="Téléphone" required>
+            </div>
           </div>
         </div>
-  
-        <!-- Adresse -->
-        <div class="row">
-          <div class="col-md-6">Adresse</div>
-          <div class="col-md-6">
-            <input class="form-control" type="text" name="adresse" formControlName="adresse" required>
+
+        <!-- Colonne de droite - Champs d'identification -->
+        <div class="col-md-5 border-start ps-4">
+          <div class="row mb-3">
+            <div class="col-12">
+              <label class="form-label">Identifiant</label>
+              <input type="text" class="form-control" formControlName="identifiant" placeholder="Identifiant" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-12">
+              <label class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" formControlName="mot_de_passe" placeholder="Mot de passe" required>
+            </div>
+          </div>
+          <div class="text-center">
+          <img src="/voiture_auto-école.png" class="voiture">
           </div>
         </div>
-  
-        <!-- Téléphone -->
-        <div class="row">
-          <div class="col-md-6">Téléphone</div>
-          <div class="col-md-6">
-            <input class="form-control" type="text" name="telephone" formControlName="telephone" required>
-          </div>
-        </div>
-  
-        <!-- Identifiant -->
-        <div class="row">
-          <div class="col-md-6">Identifiant</div>
-          <div class="col-md-6">
-            <input class="form-control" type="text" name="identifiant" formControlName="identifiant" required>
-          </div>
-        </div>
-  
-        <!-- Mot de passe -->
-        <div class="row">
-          <div class="col-md-6">Mot de passe</div>
-          <div class="col-md-6">
-            <input type="password" class="form-control" name="mot_de_passe" formControlName="mot_de_passe" required>
-          </div>
-        </div>
-  
-        <!-- Bouton de soumission -->
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <button class="btn btn-success" type="submit" [disabled]="!addForm.valid">AJOUTER AUTO-ÉCOLE</button>
-          </div>
-        </div>
-  
-      </form>
-    </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-primary btn-lg w-100" type="submit" [disabled]="!addForm.valid">Soumettre</button>
+      </div>
+    </form>
   </div>
+</div>

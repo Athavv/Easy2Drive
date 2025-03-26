@@ -1,53 +1,53 @@
 <div class="text-center">
-      <h1>Modifier l'auto-école</h1>
+  <h1>Modifier l'auto-école</h1>
+</div>
+<div style="width:50%;margin:auto">
+  <form [formGroup]="editForm" novalidate class="form">
+    <!-- Nom -->
+    <div class="row">
+      <div class="col-md-6">Nom</div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="nom" formControlName="nom">
+      </div>
     </div>
-    <div style="width:50%;margin:auto">
-      <form [formGroup]="editForm" novalidate class="form">
-        <!-- Nom -->
-        <div class="row">
-          <div class="col-md-6">Nom</div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="nom" formControlName="nom">
-          </div>
-        </div>
-  
-        <!-- Adresse -->
-        <div class="row">
-          <div class="col-md-6">Adresse</div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="adresse" formControlName="adresse">
-          </div>
-        </div>
-  
-        <!-- Téléphone -->
-        <div class="row">
-          <div class="col-md-6">Téléphone</div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="telephone" formControlName="telephone">
-          </div>
-        </div>
-  
-        <!-- Identifiant -->
-        <div class="row">
-          <div class="col-md-6">Identifiant</div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="identifiant" formControlName="identifiant">
-          </div>
-        </div>
-  
-        <!-- Mot de passe -->
-        <div class="row">
-          <div class="col-md-6">Mot de passe</div>
-          <div class="col-md-6">
-            <input type="password" class="form-control" name="mot_de_passe" formControlName="mot_de_passe">
-          </div>
-        </div>
-  
-        <!-- Bouton de soumission -->
-        <div class="row">
-          <div class="col-md-12">
-            <button class="btn btn-success" (click)="onEdit()">Modifier</button>
-          </div>
-        </div>
-      </form>
+
+    <!-- Adresse -->
+    <div class="row">
+      <div class="col-md-6">Adresse</div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="adresse" formControlName="adresse">
+      </div>
     </div>
+
+    <!-- Téléphone -->
+    <div class="row">
+      <div class="col-md-6">Téléphone</div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="telephone" formControlName="telephone">
+      </div>
+    </div>
+
+    <!-- Identifiant -->
+    <div class="row">
+      <div class="col-md-6">Identifiant</div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="identifiant" formControlName="identifiant">
+      </div>
+    </div>
+
+    <!-- Mot de passe -->
+    <div class="row">
+      <div class="col-md-6">Mot de passe</div>
+      <div class="col-md-6">
+        <input type="password" class="form-control" name="mot_de_passe" formControlName="mot_de_passe">
+      </div>
+    </div>
+
+    <!-- Bouton de soumission -->
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-success" (click)="onEdit()">Modifier</button>
+      </div>
+    </div>
+  </form>
+</div>

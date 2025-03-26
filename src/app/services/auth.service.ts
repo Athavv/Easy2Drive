@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://easy2drive.free.nf/phprestAPI/login.php'; // URL de l'API
+  private apiUrl = 'http://localhost/phprestAPI/login.php'; // URL de l'API
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -22,7 +22,7 @@ export class AuthService {
   // Méthode pour récupérer les informations de l'élève
   getEleveInfo() {
     const userId = localStorage.getItem('user_id');
-    return this.http.get(`https://easy2drive.free.nf/phprestAPI/eleve/eleve.php?id=${userId}`);
+    return this.http.get(`http://localhost/phprestAPI/eleve/eleve.php?id=${userId}`);
   }
 
   // Méthode pour vérifier si l'utilisateur est connecté
@@ -43,6 +43,6 @@ export class AuthService {
   }
 
   getScores(userId: any) {
-    return this.http.get(`https://easy2drive.free.nf/phprestAPI/eleve/score.php?id=${userId}`);
+    return this.http.get(`http://localhost/phprestAPI/eleve/score.php?id=${userId}`);
   }
 }

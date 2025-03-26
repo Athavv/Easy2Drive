@@ -15,7 +15,7 @@ export class ScoresEleveComponent implements OnInit {
   eleve_id: number;
   eleve: any;
   newScore: Score = { 
-    id_score: 0, 
+    id_test: 0, 
     id_eleve: 0, 
     theme: '', 
     date_test: new Date().toISOString().split('T')[0], 
@@ -24,7 +24,7 @@ export class ScoresEleveComponent implements OnInit {
   showAddScoreForm: boolean = false;
   showEditScoreForm: boolean = false;
   editScoreData: Score = { 
-    id_score: 0, 
+    id_test: 0, 
     id_eleve: 0, 
     theme: '', 
     date_test: new Date().toISOString().split('T')[0], 
@@ -135,7 +135,7 @@ export class ScoresEleveComponent implements OnInit {
   closeAddScoreForm(): void {
     this.showAddScoreForm = false;
     this.newScore = { 
-      id_score: 0, 
+      id_test: 0, 
       id_eleve: 0, 
       theme: '', 
       date_test: new Date().toISOString().split('T')[0], 
@@ -169,7 +169,7 @@ export class ScoresEleveComponent implements OnInit {
   closeEditScoreForm(): void {
     this.showEditScoreForm = false;
     this.editScoreData = { 
-      id_score: 0, 
+      id_test: 0, 
       id_eleve: 0, 
       theme: '', 
       date_test: new Date().toISOString().split('T')[0], 
@@ -196,25 +196,21 @@ export class ScoresEleveComponent implements OnInit {
 
   onDeleteScore(score: Score): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce score ?')) {
-      this.eleveService.deleteScore(score.id_score).subscribe(
-        (response: any) => {
-          if (response.success) {
-            this.scores = this.scores.filter((s: Score) => s.id_score !== score.id_score);
-            this.totalScores = this.scores.length;
-            this.totalScorePages = Math.ceil(this.totalScores / this.scoresPerPage);
-            if (this.currentScorePage > this.totalScorePages) {
-              this.currentScorePage = Math.max(1, this.totalScorePages);
-            }
-            alert('Score supprimé avec succès.');
+      this.eleveService.deleteScore(score.id_test).subscribe({
+        next: (response: any) => {
+          if (response?.success) {
+            this.scores = this.scores.filter(s => s.id_test === score.id_test);
+            this.loadScoresByEleve(this.eleve_id); // Rechargement des données
+            alert('Score supprimé avec succès');
           } else {
-            alert('Erreur : ' + response.message);
+            alert('Erreur: ' + (response?.message || 'Échec de la suppression'));
           }
         },
-        (error) => {
-          console.error('Erreur HTTP :', error);
-          alert('Impossible de se connecter au serveur.');
+        error: (error) => {
+          console.error('Erreur:', error);
+          alert('Erreur serveur: ' + error.message);
         }
-      );
+      });
     }
   }
 }

@@ -4,21 +4,20 @@
     <div class="row">
       <!-- Bloc en haut à gauche : Informations de l'auto-école -->
       <div class="col-md-4">
-        <div class="card mb-4">
+        <div class="card mb-4 infos">
           <div class="card-body">
-            <h2 class="card-title">Informations de l'auto-école</h2>
             <div *ngIf="autoecole">
-              <p><strong>Nom :</strong> {{ autoecole.nom }}</p>
-              <p><strong>Adresse :</strong> {{ autoecole.adresse }}</p>
-              <p><strong>Téléphone :</strong> {{ autoecole.telephone }}</p>
-              <p><strong>Identifiant :</strong> {{ autoecole.identifiant }}</p>
+              <p class="info"><img src="/auto_ecole.png" class="icon"><strong> {{ autoecole.nom }} </strong></p>
+              <p class="info"><img src="/adresse.png" class="icon"><strong>{{ autoecole.adresse }} </strong></p>
+              <p class="info"><img src="/tel.png" class="icon"><strong> {{ autoecole.telephone }} </strong></p>
+              <p class="info"><img src="/nom.png" class="icon"><strong> {{ autoecole.identifiant }} </strong></p>
             </div>
           </div>
         </div>
 
         <!-- Bloc Avis -->
-        <div class="card">
-          <div class="card-body">
+        <div class="card infos">
+          <div class="card-body info">
             <h2 class="card-title">Avis des élèves</h2>
             
             <div *ngIf="getPaginatedAvis().length > 0; else noAvis">
@@ -67,36 +66,48 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">Élèves de l'auto-école</h2>
+            <h2 class="card-title">Listes des élèves</h2>
           
             <!-- Tableau des élèves -->
-            <table class="table table-striped">
-              <thead class="bg-primary text-white">
-                <tr>
-                  <th>#</th>
-                  <th>Nom</th>
-                  <th>NEPH</th>
-                  <th>Date de naissance</th>
-                  <th>Genre</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let eleve of getPaginatedEleves(); let i = index">
-                  <td>{{ (currentElevePage - 1) * elevesPerPage + i + 1 }}</td>
-                  <td>{{ eleve.nom }} {{ eleve.prenom }}</td>
-                  <td>{{ eleve.npeh }}</td>
-                  <td>{{ eleve.date_naissance | date:'dd/MM/yyyy' }}</td>
-                  <td>{{ eleve.genre }}</td>
-                  <td>
-                    <a [routerLink]="['/infos-eleve', eleve.id_eleve]" class="btn btn-info btn-sm">Voir plus</a>
-                  </td>
-                </tr>
-                <tr *ngIf="eleves.length === 0">
-                  <td colspan="6" class="text-center">Aucun élève trouvé pour cette auto-école</td>
-                </tr>
-              </tbody>
-            </table>
+<!-- [...] (conserve tout le code précédent jusqu'au tableau) -->
+
+<table class="table table-striped row-lg">
+  <thead class="titre">
+    <tr>
+      <th class="text-center">#</th>
+      <th class="text-center">NEPH</th>
+      <th class="text-center">Nom</th>
+      <th class="text-center">Genre</th>
+      <th class="text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let eleve of getPaginatedEleves(); let i = index">
+      <td class="text-center">{{ (currentElevePage - 1) * elevesPerPage + i + 1 }}</td>
+      <td class="text-center">{{ eleve.npeh }}</td>
+      <td class="text-center">{{ eleve.nom }} {{ eleve.prenom }}</td>
+      <td class="text-center">{{ eleve.genre }}</td>
+      <td class="actions-cell text-center">
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <a [routerLink]="['/infos-eleve', eleve.id_eleve]" class="btn btn-sm p-0">
+            <img src="/voir_plus.png" class="action-icon voir-plus">
+          </a>
+          <a [routerLink]="['/scores-eleve', eleve.id_eleve]" class="btn btn-sm p-0">
+            <img src="/modifier.png" class="action-icon modif">
+          </a>
+          <button class="btn btn-sm p-0">
+            <img src="/supp.png" class="action-icon supp">
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="eleves.length === 0">
+      <td colspan="5" class="text-center">Aucun élève trouvé pour cette auto-école</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- [...] (conserve le reste du code) -->
           
             <!-- Pagination Élèves -->
             <nav *ngIf="totalElevePages > 1" class="mt-3">

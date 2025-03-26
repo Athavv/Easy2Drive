@@ -1,11 +1,116 @@
-.app-container {
-    display: flex; /* Utilisation de flexbox pour une disposition horizontale */
-    min-height: 100vh; /* Hauteur minimale de la vue */
-  }
-  
-  .main-content {
-    flex-grow: 1; /* Le contenu principal prend tout l'espace restant */
-    padding: 20px; /* Espacement intérieur */
-    overflow-y: auto; /* Permet le défilement vertical si le contenu est trop long */
-  }
-  
+/* Styles généraux du modal */
+.modal-dialog {
+  max-width: 1000px !important; /* Légèrement augmenté */
+  width: 90% !important;
+}
+
+.modal-content {
+  border-radius: 15px;
+  padding: 2.5rem; /* Augmenté */
+}
+
+/* Style de la carte contenant le formulaire */
+.card {
+  border: none;
+  padding: 2rem;
+  background-color: #f9f9f9; /* Fond légèrement grisé */
+}
+
+/* Titre du formulaire */
+h2.text-center {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Disposition des colonnes */
+.form-columns {
+  display: flex;
+  gap: 2rem;
+}
+
+.main-column {
+  flex: 2; /* Prend 2 parts d'espace */
+}
+
+.auth-column {
+  flex: 1; /* Prend 1 part d'espace */
+  border-left: 2px solid #e9ecef;
+  padding-left: 2rem;
+}
+
+/* Styles des lignes et colonnes */
+.row {
+  margin-bottom: 1.5rem;
+}
+
+.col-md-6 {
+  padding: 0 1rem;
+}
+
+/* Styles des labels */
+.form-label {
+  display: block;
+  margin-bottom: 0.75rem; /* Augmenté */
+  font-weight: 500;
+  color: #495057;
+  font-size: 1.1rem;
+}
+
+/* Styles des champs de formulaire */
+.form-control {
+  width: 100%;
+  padding: 14px 16px; /* Augmenté */
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s;
+  background-color: white;
+}
+
+.form-control:focus {
+  border-color: #5B44F2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(91, 68, 242, 0.1);
+}
+
+/* Styles spécifiques pour les champs date */
+input[type="date"] {
+  padding: 13px 15px; /* Ajusté */
+}
+
+/* Styles des boutons radio */
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+.form-check-input {
+  margin-right: 0.75rem; /* Augmenté */
+  width: 20px; /* Augmenté */
+  height: 20px; /* Augmenté */
+}
+
+.form-check-label {
+  font-size: 1.05rem;
+}
+
+/* Style du bouton de soumission */
+.btn-primary {
+  background-color: #5B44F2;
+  color:black;
+  border: 2px solid black;
+  padding: 14px;
+  font-size: 1.1rem;
+}
+
+.voiture {
+  width: 300px;
+}

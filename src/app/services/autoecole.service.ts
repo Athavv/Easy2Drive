@@ -7,7 +7,7 @@ import { Autoecole } from '../modules/autoecoles';
   providedIn: 'root'
 })
 export class AutoecoleService {
-  private apiUrl = 'https://easy2drive.free.nf/phprestAPI/admin/auto-ecole'; // URL de l'API
+  private apiUrl = 'http://localhost/phprestAPI/admin/auto-ecole'; // URL de l'API
 
   constructor(private http: HttpClient) {}
 

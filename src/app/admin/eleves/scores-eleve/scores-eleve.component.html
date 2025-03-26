@@ -1,25 +1,23 @@
 <div class="app-container">
-  <app-sidebar></app-sidebar>
+  <app-sidebar></app-sidebar> <!-- Conserver la sidebar -->
   <div class="container-fluid mt-4">
     <div class="row">
       <!-- Bloc en haut à gauche : Informations de l'élève -->
-      <div class="col-md-4">
-        <div class="card mb-4">
+      <div class="col-md-4 ">
+        <div class="card mb-4 infos">
           <div class="card-body">
-            <h2 class="card-title">Informations de l'élève</h2>
             <div *ngIf="eleve">
-              <p><strong>Nom :</strong> {{ eleve.nom }}</p>
-              <p><strong>Prénom :</strong> {{ eleve.prenom }}</p>
-              <p><strong>Date de naissance :</strong> {{ eleve.date_naissance | date:'dd/MM/yyyy' }}</p>
-              <p><strong>Adresse :</strong> {{ eleve.adresse }}</p>
-              <p><strong>Date d'inscription :</strong> {{ eleve.date_inscription | date:'dd/MM/yyyy' }}</p>
-              <p><strong>NPEH :</strong> {{ eleve.npeh }}</p>
-              <p><strong>Genre :</strong> {{ eleve.genre }}</p>
+              <p class="info"><img src="/nom.png" class="icon"><strong> {{ eleve.nom }} {{ eleve.prenom }}</strong></p>
+              <p class="info"><img src="/age.png" class="icon"><strong> {{ eleve.date_naissance }} </strong></p>
+              <p class="info"><img src="/auto_ecole.png" class="icon"><strong> {{ eleve.date_naissance | date:'dd/MM/yyyy' }}</strong></p>
+              <p class="info"><img src="/adresse.png" class="icon"><strong> {{ eleve.adresse }} </strong></p>
+              <p class="info"><img src="/inscription.png" class="icon"><strong> {{ eleve.date_inscription | date:'dd/MM/yyyy' }} </strong></p>
+              <p class="info"><img src="/neph.png" class="icon"><strong> {{ eleve.npeh }}</strong></p>
+              <p class="info"><img src="/genre.png" class="icon"><strong> {{ eleve.genre }}</strong></p>
             </div>
           </div>
         </div>
 
-        <!-- Bloc Avis modifié -->
         <div class="card">
           <div class="card-body">
             <h2 class="card-title">Avis de l'élève</h2>
@@ -64,59 +62,51 @@
           </div>
         </div>
       </div>
-<!-- Bloc à droite : Gestion des scores -->
-<div class="col-md-8">
-  <div class="card">
-    <div class="card-body">
-      <h2 class="card-title">Scores de l'élève</h2>
-      <button class="btn btn-primary mb-3" (click)="openAddScoreForm()">Ajouter un score</button>
-      <table class="table table-striped">
-        <thead class="bg-primary text-white">
-          <tr>
-            <th>Thème</th>
-            <th>Date du test</th>
-            <th>Score</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let score of getPaginatedScores()">
-            <td>{{ score.theme }}</td>
-            <td>{{ score.date_test | date:'dd/MM/yyyy' }}</td>
-            <td>{{ score.score }}</td>
-            <td>
-              <button class="btn btn-primary btn-sm mr-2" (click)="openEditScoreForm(score)">Modifier</button>
-              <button class="btn btn-danger btn-sm" (click)="onDeleteScore(score)">Supprimer</button>
-            </td>
-          </tr>
-          <tr *ngIf="scores.length === 0">
-            <td colspan="4" class="text-center">Aucun score enregistré pour cet élève</td>
-          </tr>
-        </tbody>
-      </table>
 
-      <!-- Pagination Scores -->
-      <nav *ngIf="totalScorePages > 1" class="mt-3">
-        <ul class="pagination justify-content-center">
-          <li class="page-item" [class.disabled]="currentScorePage === 1">
-            <a class="page-link" (click)="changeScorePage(currentScorePage - 1)">Précédent</a>
-          </li>
-          
-          <li *ngFor="let page of [].constructor(totalScorePages); let i = index" 
-              class="page-item" [class.active]="currentScorePage === i + 1">
-            <a class="page-link" (click)="changeScorePage(i + 1)">{{ i + 1 }}</a>
-          </li>
-          
-          <li class="page-item" [class.disabled]="currentScorePage === totalScorePages">
-            <a class="page-link" (click)="changeScorePage(currentScorePage + 1)">Suivant</a>
-          </li>
-        </ul>
-      </nav>
+      <!-- Bloc à droite : Gestion des scores -->
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+
+
+            <!-- Bouton pour ouvrir le formulaire d'ajout de score -->
+
+            <!-- Liste des scores -->
+            <table class="table table-striped row-lg">
+              <thead class="titre">
+                <tr>
+                  <th class="col">Catégorie</th>
+                  <th class="col">Date</th>
+                  <th class="col">Notes</th>
+                  <th class="col">Actions</th> <!-- Le texte sera centré -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let score of scores">
+                  <td class="text-center">{{ score.theme }}</td>
+                  <td class="text-center">{{ score.date_test | date:'dd/MM/yyyy' }}</td>
+                  <td class="text-center">
+                    <span [ngClass]="score.score >= 10 ? 'bon_score' : 'mauvais_score'">{{ score.score }}</span>
+                  </td>
+                  <td class="actions-cell"> <!-- Nouvelle classe pour le conteneur -->
+                    <button class="btn btn-sm" (click)="openEditScoreForm(score)">
+                      <img src="/modifier.png" class="modif">
+                    </button>
+                    <button class="btn btn-sm" (click)="onDeleteScore(score)">
+                      <img src="/supp.png" class="supp">
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn ajout mb-3" (click)="openAddScoreForm()">Ajouter un score</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-  <!-- Modales pour les scores (inchangées) -->
+  <!-- Modale pour ajouter un score -->
   <div *ngIf="showAddScoreForm" class="modal-backdrop" (click)="closeAddScoreForm()"></div>
   <div *ngIf="showAddScoreForm" class="modal-content">
     <div class="card">
@@ -135,13 +125,17 @@
             <label for="score">Score</label>
             <input type="number" class="form-control" id="score" [(ngModel)]="newScore.score" name="score" min="0" max="100" required>
           </div>
-          <button type="submit" class="btn btn-success">Ajouter</button>
-          <button type="button" class="btn btn-secondary ml-2" (click)="closeAddScoreForm()">Annuler</button>
+          <div class="text-center">
+          <button type="submit" class="btn btn-valider mx-2">Ajouter</button>
+          <button type="button" class="btn btn-annuler ml-2 mx-2" (click)="closeAddScoreForm()">Annuler</button>
+        </div>
         </form>
+        
       </div>
     </div>
   </div>
 
+  <!-- Modale pour modifier un score -->
   <div *ngIf="showEditScoreForm" class="modal-backdrop" (click)="closeEditScoreForm()"></div>
   <div *ngIf="showEditScoreForm" class="modal-content">
     <div class="card">
