@@ -1,57 +1,66 @@
 <nav id="sidebar" [ngClass]="{'close': isSidebarClosed}">
-  <ul>
-    <!-- Bouton pour réduire/agrandir la sidebar -->
-    <li>
-      <span class="logo">EASY2DRIVE</span>
-      <button (click)="toggleSidebar()" id="toggle-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-          <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+  <div style="display: flex; flex-direction: column; height: 100%;">
+    <ul style="flex-grow: 1;">
+      <!-- Bouton pour réduire/agrandir la sidebar -->
+      <li>
+        <span class="logo">EASY2DRIVE</span>
+        <button (click)="toggleSidebar()" id="toggle-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+          </svg>
+        </button>
+      </li>
+
+      <!-- Menu Home -->
+      <li class="nav-item" [ngClass]="{'active': isActive('home')}">
+        <a class="nav-link" routerLink="/Admin-Home" (click)="setActive('home')">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+          </svg>
+          <span>Home</span>
+        </a>
+      </li>
+
+      <!-- Menu Élèves -->
+      <li class="nav-item" [ngClass]="{'active': isActive('list-eleves')}">
+        <a class="nav-link" routerLink="/list-eleves" (click)="setActive('list-eleves')">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66 47 113t113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+          </svg>
+          <span>Élèves</span>
+        </a>
+      </li>
+
+      <!-- Menu Auto Écoles -->
+      <li class="nav-item" [ngClass]="{'active': isActive('list-autoecoles')}">
+        <a class="nav-link" routerLink="/list-autoecoles" (click)="setActive('list-autoecoles')">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/>
+          </svg>
+          <span>Auto Écoles</span>
+        </a>
+      </li>
+
+      <!-- Menu Avis -->
+      <li class="nav-item" [ngClass]="{'active': isActive('avis')}">
+        <a class="nav-link" routerLink="/avis" (click)="setActive('avis')">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/>
+            <path d="M240-560h480v-80H240v80Zm0 120h320v-80H240v80Z"/>
+          </svg>
+          <span>Avis</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Bouton de déconnexion -->
+    <div style="margin-top: auto; padding: 10px;">
+      <button (click)="onLogout()" style="width: 100%; background-color: #D98B8B; color: white; border: none; border-radius: 5px; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
         </svg>
+        <span>Se déconnecter</span>
       </button>
-    </li>
-
-    <!-- Menu Home -->
-    <li class="nav-item" [ngClass]="{'active': isActive('home')}">
-      <a class="nav-link" routerLink="/Admin-Home" (click)="setActive('home')">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-          <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
-        </svg>
-        <span>Home</span>
-      </a>
-    </li>
-
-    <!-- Menu Élèves -->
-    <li class="nav-item" [ngClass]="{'active': isActive('list-eleves')}">
-      <a class="nav-link" routerLink="/list-eleves" (click)="setActive('list-eleves')">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-          <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66 47 113t113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
-        </svg>
-        <span>Élèves</span>
-      </a>
-    </li>
-
-    <!-- Menu Auto Écoles -->
-    <li class="nav-item" [ngClass]="{'active': isActive('list-autoecoles')}">
-      <a class="nav-link" routerLink="/list-autoecoles" (click)="setActive('list-autoecoles')">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-          <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/>
-        </svg>
-        <span>Auto Écoles</span>
-      </a>
-    </li>
-
-    <li class="nav-item" [ngClass]="{'active': isActive('list-autoecoles')}">
-      <a class="nav-link" routerLink="/avis" (click)="setActive('list-autoecoles')">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-          <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/>
-        </svg>
-        <span>Avis</span>
-      </a>
-    </li>
-  </ul>
-
-
-
-  <!-- Bouton de déconnexion -->
-  <button (click)="onLogout()" class="btn btn-danger">Se déconnecter</button>
+    </div>
+  </div>
 </nav>
