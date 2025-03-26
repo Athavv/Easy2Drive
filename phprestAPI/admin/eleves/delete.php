@@ -18,38 +18,38 @@ require '../../db_connect.php';
 $database = new Operations();
 $conn = $database->dbConnection();
 
-$id_score = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) : null;
+$id_eleve = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) : null;
 
-if (!$id_score) {
+if (!$id_eleve) {
     http_response_code(400);
-    echo json_encode(['success' => 0, 'message' => 'ID du score manquant ou invalide.']);
+    echo json_encode(['success' => 0, 'message' => 'ID de l\'élève manquant ou invalide.']);
     exit;
 }
 
 try {
-    // Vérifier si le score existe
-    $check_query = "SELECT * FROM test WHERE id_score = :id_score";
+    // Vérifier si l'élève existe
+    $check_query = "SELECT * FROM eleve WHERE id_eleve = :id_eleve";
     $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bindParam(':id_score', $id_score, PDO::PARAM_INT);
+    $check_stmt->bindParam(':id_eleve', $id_eleve, PDO::PARAM_INT);
     $check_stmt->execute();
 
     if ($check_stmt->rowCount() === 0) {
         http_response_code(404);
-        echo json_encode(['success' => 0, 'message' => 'Aucun score trouvé avec cet ID.']);
+        echo json_encode(['success' => 0, 'message' => 'Aucun élève trouvé avec cet ID.']);
         exit;
     }
 
-    // Supprimer le score
-    $delete_query = "DELETE FROM test WHERE id_score = :id_score";
+    // Supprimer l'élève
+    $delete_query = "DELETE FROM eleve WHERE id_eleve = :id_eleve";
     $delete_stmt = $conn->prepare($delete_query);
-    $delete_stmt->bindParam(':id_score', $id_score, PDO::PARAM_INT);
+    $delete_stmt->bindParam(':id_eleve', $id_eleve, PDO::PARAM_INT);
 
     if ($delete_stmt->execute()) {
         http_response_code(200);
-        echo json_encode(['success' => 1, 'message' => 'Score supprimé avec succès.']);
+        echo json_encode(['success' => 1, 'message' => 'Élève supprimé avec succès.']);
     } else {
         http_response_code(500);
-        echo json_encode(['success' => 0, 'message' => 'Échec de la suppression du score.']);
+        echo json_encode(['success' => 0, 'message' => 'Échec de la suppression de l\'élève.']);
     }
 } catch (PDOException $e) {
     http_response_code(500);

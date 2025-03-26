@@ -1,84 +1,106 @@
+/* Styles généraux */
 .app-container {
   display: flex;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .main-content {
-  flex-grow: 1; 
-  padding: 20px; 
+  flex-grow: 1;
+  padding: 20px;
   overflow-y: auto;
 }
 
-/* Fond noir semi-transparent */
-.modal-backdrop {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
-z-index: 1000; /* Assurez-vous que le fond est en dessous du formulaire */
+/* Styles du tableau */
+.table {
+  width: 100%;
+  margin-bottom: 0; /* Supprime la marge pour intégrer la pagination */
+  color: #212529;
+  border-collapse: collapse;
+  position: relative;
 }
 
-/* Conteneur du formulaire */
-.modal-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%; /* Utilise 90% de l'espace disponible */
-  max-width: 1200px; /* Mais ne dépasse pas cette largeur */
-  min-height: 70vh; /* Utilise 70% de la hauteur visible */
-  max-height: 90vh; /* Avec un maximum de 90% */
-  overflow-y: auto; /* Défilement si contenu trop long */
-  padding: 2rem;
-  background: white;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  z-index: 1001;
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .ligne {
-background-color: #8C9CF4;
-color: black;
+  background-color: #8C9CF4;
+  color: black;
 }
 
-.modif {
-background-color: #C7D9D6;
-color:white;
-border-radius: 100%;
+/* Pied de tableau avec pagination */
+.table-footer {
+  background-color: #8C9CF4;
+  padding: 15px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-.supp {
-background-color: #D98B8B;
-color:white;
-border-radius:100%;
+/* Pagination */
+.pagination {
+  margin: 0;
 }
 
-.ajout {
-background-color: #6D81F2;
-color: white;
+.page-item {
+  margin: 0 3px;
 }
 
-.list{
-font-family: "Roboto", sans-serif;
-font-optical-sizing: auto;
-font-weight: weight;
-font-style: normal;
-font-variation-settings: "wdth" 100
+.page-link {
+  color: #495057;
+  background-color: white;
+  border: none;
+  border-radius: 4px !important;
+  padding: 6px 12px;
 }
 
-#foot {
-    background-color: #8C9CF4;
+.page-item.active .page-link {
+  background-color: #6D81F2;
+  color: white;
 }
 
-.icon {
-  width: 25px;
+.page-item.disabled .page-link {
+  color: #6c757d;
 }
 
-.voir_plus {
-  background-color: #C7D9D6;
-  color:white;
-  border-radius:100%;  
+.page-link:hover {
+  background-color: #e9ecef;
 }
 
+/* Styles des boutons */
+.btn-danger {
+  background-color: #D98B8B;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.btn-danger:hover {
+  background-color: #c77a7a;
+}
+
+/* Select */
+.form-select {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table-footer {
+    justify-content: center;
+  }
+  
+  .page-item {
+    margin: 0 2px;
+  }
+  
+  .page-link {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+}

@@ -8,23 +8,38 @@
             <div class="row">
                 <!-- Colonne Gauche (50%) -->
                 <div class="col-md-4">
-                    <!-- Section Informations (en haut à gauche) -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">{{ eleve?.prenom }} {{ eleve?.nom }}</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center mb-2">
-                                    <span class="badge bg-dark me-2">{{ calculateAge(eleve?.date_naissance) }} ans</span>
-                                    <span class="text-muted">Auto-Ecole: <strong>{{ eleve?.nom_autoecole }}</strong></span>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="badge bg-success">Tests: {{ scores.length }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- Section Informations (en haut à gauche) -->
+<div class="card shadow mb-4 info-card">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-4">
+            <img src="/Group 29.png" class="info-icon" alt="Utilisateur">
+            <h5 class="card-title mb-0">{{ eleve?.prenom }} {{ eleve?.nom }}</h5>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="info-item">
+                <img src="/Group 30.png" class="info-icon" alt="Âge">
+                <div class="info-content">
+                    <span class="d-block info-label">Âge</span>
+                    <span class="d-block info-value">{{ calculateAge(eleve?.date_naissance) }} ans</span>
+                </div>
+            </div>
+            <div class="info-item">
+                <img src="/Group 31.png" class="info-icon" alt="Auto-école">
+                <div class="info-content">
+                    <span class="d-block info-label">Auto-École</span>
+                    <span class="d-block info-value">{{ eleve?.nom_autoecole }}</span>
+                </div>
+            </div>
+            <div class="info-item">
+                <img src="/Group 32.png" class="info-icon" alt="Tests">
+                <div class="info-content">
+                    <span class="d-block info-label">Nombre de test</span>
+                    <span class="d-block info-value">{{ scores.length }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                     <!-- Section Avis (en bas à gauche) -->
                     <div class="card shadow">

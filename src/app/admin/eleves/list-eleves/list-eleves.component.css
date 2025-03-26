@@ -1,36 +1,135 @@
+/* Styles généraux */
 .app-container {
   display: flex;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .main-content {
-  flex-grow: 1; 
-  padding: 20px; 
+  flex-grow: 1;
+  padding: 20px;
   overflow-y: auto;
 }
 
-/* Fond noir semi-transparent */
-.modal-backdrop {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
-z-index: 1000; /* Assurez-vous que le fond est en dessous du formulaire */
+.list {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
-/* Conteneur du formulaire */
+/* Styles du tableau */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ligne {
+  background-color: #8C9CF4;
+  color: black;
+}
+
+#foot {
+  background-color: #8C9CF4;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+/* Bouton Ajouter */
+.ajout {
+  background-color: #6D81F2;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.ajout:hover {
+  background-color: #5a6feb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons d'action */
+.voir_plus, .modif, .supp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.voir_plus {
+  background-color: #C7D9D6;
+}
+
+.modif {
+  background-color: #C7D9D6;
+}
+
+.supp {
+  background-color: #D98B8B;
+}
+
+.voir_plus:hover, .modif:hover, .supp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Conteneur des boutons */
+td.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Styles modaux */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
 .modal-content {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%; /* Utilise 90% de l'espace disponible */
-  max-width: 1200px; /* Mais ne dépasse pas cette largeur */
-  min-height: 70vh; /* Utilise 70% de la hauteur visible */
-  max-height: 90vh; /* Avec un maximum de 90% */
-  overflow-y: auto; /* Défilement si contenu trop long */
+  width: 90%;
+  max-width: 1200px;
+  min-height: 70vh;
+  max-height: 90vh;
+  overflow-y: auto;
   padding: 2rem;
   background: white;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
@@ -38,46 +137,30 @@ z-index: 1000; /* Assurez-vous que le fond est en dessous du formulaire */
   z-index: 1001;
 }
 
-.ligne {
-background-color: #8C9CF4;
-color: black;
-}
-
-.modif {
-background-color: #C7D9D6;
-color:white;
-border-radius: 100%;
-}
-
-.supp {
-background-color: #D98B8B;
-color:white;
-border-radius:100%;
-}
-
-.ajout {
-background-color: #6D81F2;
-color: white;
-}
-
-.list{
-font-family: "Roboto", sans-serif;
-font-optical-sizing: auto;
-font-weight: weight;
-font-style: normal;
-font-variation-settings: "wdth" 100
-}
-
-#foot {
-    background-color: #8C9CF4;
-}
-
-.icon {
-  width: 25px;
-}
-
-.voir_plus {
-  background-color: #C7D9D6;
-  color:white;
-  border-radius:100%;  
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+  
+  th, td {
+    padding: 8px 10px;
+  }
+  
+  .ajout {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+  .voir_plus, .modif, .supp {
+    width: 35px;
+    height: 35px;
+    margin: 0 3px;
+  }
+  
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
 }

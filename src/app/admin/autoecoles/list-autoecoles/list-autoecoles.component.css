@@ -43,17 +43,8 @@ background-color: #8C9CF4;
 color: black;
 }
 
-.modif {
-background-color: #C7D9D6;
-color:white;
-border-radius: 100%;
-}
 
-.supp {
-background-color: #D98B8B;
-color:white;
-border-radius:100%;
-}
+
 
 .ajout {
 background-color: #6D81F2;
@@ -68,17 +59,54 @@ font-style: normal;
 font-variation-settings: "wdth" 100
 }
 
-#foot {
-    background-color: #8C9CF4;
+
+/* Bouton Voir plus */
+.voir_plus {
+  background-color: #C7D9D6;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 5px; /* Espace à droite et à gauche */
+}
+
+/* Bouton Modifier */
+.modif {
+  background-color: #C7D9D6;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 5px; /* Espace à droite et à gauche */
+}
+
+/* Bouton Supprimer */
+.supp {
+  background-color: #D98B8B;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 5px; /* Espace à droite et à gauche */
 }
 
 .icon {
-  width: 25px;
+  width: 20px; /* Légèrement réduit pour mieux s'adapter */
+  height: 20px; /* Garder le ratio carré */
 }
 
-.voir_plus {
-  background-color: #C7D9D6;
-  color:white;
-  border-radius:100%;  
+#foot {
+  background-color: #8C9CF4;
 }
-

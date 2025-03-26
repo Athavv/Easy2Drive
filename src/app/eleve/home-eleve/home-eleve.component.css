@@ -8,10 +8,12 @@
 
 .card-header {
   border-radius: 8px 8px 0 0 !important;
+  background-color: #5B44F2;
+  color: #f8f9fa;
 }
 
 .table-hover tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: #5B44F2;
 }
 
 .badge {
@@ -29,4 +31,49 @@
 
 .bg-success {
   background-color: #28a745 !important;
+}
+
+/* Nouveaux styles pour la section Informations */
+.info-card {
+  background-color: #5B44F2;
+  color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  height: 60%;
+}
+
+.info-card .card-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.info-card .info-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.info-card .info-value {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+/* Ajoutez ces nouveaux styles */
+.info-card .info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.info-card .info-icon {
+  margin-right: 0.75rem;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.info-card .info-content {
+  flex: 1;
 }
