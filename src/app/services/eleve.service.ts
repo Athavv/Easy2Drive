@@ -10,7 +10,7 @@ import { Score } from '../modules/score';
 export class EleveService {
 
   // URL de base de l'API PHP
-  private baseUrl: string = 'http://localhost/phprestAPI/admin/'; 
+  private baseUrl: string = 'https://easy2drive.free.nf/phprestAPI/admin/'; 
 
   constructor(private http: HttpClient) {}
 
